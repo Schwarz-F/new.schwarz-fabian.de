@@ -1,0 +1,414 @@
+{
+    "operatorName": "FABIAN SCHWARZ",
+    "operatorRole": "just sb. with too much free time",
+    "profilePicture": null,
+    "profileMeta": [
+        {
+            "label": "Location",
+            "value": "Erkelenz, NRW",
+            "hl": false
+        },
+        {
+            "label": "Status",
+            "value": "ACTIVE",
+            "hl": true
+        },
+        {
+            "label": "Ausbildung",
+            "value": "Jahr 1 \/ 3",
+            "hl": false
+        }
+    ],
+    "stats": [
+        {
+            "label": "Kaffee\/Tag",
+            "value": "Offiziell 3..."
+        }
+    ],
+    "profileBadges": [
+        {
+            "l": "he\/him",
+            "t": "g"
+        }
+    ],
+    "discordId": "759331082503323678",
+    "discordName": "schwarzf",
+    "discordUrl": "https:\/\/discord.com\/users\/759331082503323678",
+    "aboutHtml": "Azubi als <span>Fachinformatiker für Systemintegration<\/span> aus dem Raum Erkelenz, NRW.",
+    "intelBadges": [
+        {
+            "l": "Thin Clients",
+            "t": "o"
+        },
+        {
+            "l": "Netzwerktechnik",
+            "t": "o"
+        },
+        {
+            "l": "SMB\/AD",
+            "t": "o"
+        },
+        {
+            "l": "JavaScript",
+            "t": "c"
+        },
+        {
+            "l": "Fotografie",
+            "t": "c"
+        },
+        {
+            "l": "Techwear",
+            "t": "c"
+        }
+    ],
+    "links": [
+        {
+            "code": "OP-04",
+            "title": "Discord",
+            "sub": "@schwarzf",
+            "url": "https:\/\/discord.com\/users\/759331082503323678",
+            "icon": "discord",
+            "dcStatus": true
+        },
+        {
+            "code": "OP-03",
+            "title": "Instagram",
+            "sub": "@f.schwarz.erk",
+            "url": "https:\/\/www.instagram.com\/f.schwarz.erk\/",
+            "icon": "instagram",
+            "dcStatus": false
+        },
+        {
+            "code": "OP-05",
+            "title": "E-Mail",
+            "sub": "mail@schwarz-fabian.de",
+            "url": "mailto:mail@schwarz-fabian.de",
+            "icon": "email",
+            "dcStatus": false
+        },
+        {
+            "code": "OP-01",
+            "title": "GITHUB",
+            "sub": "I'm not a Developer",
+            "url": "https:\/\/github.com\/Schwarz-F",
+            "icon": "github",
+            "dcStatus": false
+        },
+        {
+            "code": "OP-02",
+            "title": "LinkedIn",
+            "sub": "Warum auch immer",
+            "url": "https:\/\/www.linkedin.com\/in\/fabian-schwarz-6a91bb26a\/",
+            "icon": "linkedin",
+            "dcStatus": false
+        }
+    ],
+    "watchlist": [
+        {
+            "title": "Classroom of the Elite",
+            "type": "Anime",
+            "status": "watching",
+            "ep": "S4\/E6"
+        },
+        {
+            "title": "Modern Family",
+            "type": "Serie",
+            "status": "watching",
+            "ep": "S1\/E11"
+        },
+        {
+            "title": "Mr. Robot",
+            "type": "Serie",
+            "status": "completed",
+            "ep": "45\/45"
+        },
+        {
+            "title": "Dark",
+            "type": "Serie",
+            "status": "completed",
+            "ep": "26\/26"
+        }
+    ],
+    "customWindows": [
+        {
+            "id": "cw_1780475001304",
+            "title": "Hi",
+            "subtitle": "",
+            "type": "image",
+            "icon": "◆",
+            "initW": 420,
+            "showStartMenu": false,
+            "showDesktopIcon": false,
+            "content": {
+                "src": "data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKcAAACICAYAAACC7PsPAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABE2VYSWZJSSoACAAAAAMAMQECABcAAAAyAAAADgECAEQAAABJAAAAm5wBAIYAAACNAAAAAAAAAFdhbSdzIENsaXBweSBHZW5lcmF0b3IATWljcm9zb2Z0IE9mZmljZSBBc3Npc3RhbnQsIENsaXBwaXQgc2F5aW5nICdXaG8gdGhlIEZ1Y2sgYXJlIHlvdT8nLgBNAGkAYwByAG8AcwBvAGYAdAAgAE8AZgBmAGkAYwBlACAAQQBzAHMAaQBzAHQAYQBuAHQALAAgAEMAbABpAHAAcABpAHQAIABzAGEAeQBpAG4AZwAgACcAVwBoAG8AIAB0AGgAZQAgAEYAdQBjAGsAIABhAHIAZQAgAHkAbwB1AD8AJwAuAAoV9hUAACHqSURBVHic7Z1tbFzVmccfN0sS24MZZ1z8lq1dO8XEcoTTmxrhkoSWKHxoYKXSgoRYNVKlRMsq2m4\/LBJfqmqlSt0PXRBapERFKu2qEqVUu5CqShREEgerBG5jZDfJlIzXrvxKbTwxYzsOsmaf\/3POuXNmMjP2OC8e2+cvwr0zc+fOjOc3z9t5zrl\/R\/mVJCen26uSXA9kgzMNyGTyQ3Jyuh0qKdmFjc1bGqiZcMqBDkinOyGbMwvUAFAbTgem04oJ3GUCauB0YDqtuDIB\/Tv7ASenlZYFKC2WrTs5rZgApysXORWjkmI5nUt3KiYZ1+7culPRysHpVLQqCE6Y2swQINt9mffnOuZW6la+hskWs+lmX+NO\/C2KQZl\/w+V85lVpOe\/EF5x0cfhNKZsRy3Z\/Pt0WONeLdXBauuz65VJVEJzmBTLdtYPR6XbollvOfKDmMu32Lyof5PZxi50rVxy8lNdZijI\/Z654fCmvtZQfd7b3bhuHzMfyPW+pr59piLKdZyl\/h3z359MdizlzJUhL\/XDQYglWIedd7I+VzQUV8sddSkK4HHgz39dSH8v3Pgp9\/4WCtlzPumw4C33BO+H2l2oZlhL73Mz7zXy9m7Ekix13Kz7z7QrNlpME2bqllrPYY8+b\/WPd6vdxq\/9eN2OdM59zK97XzZ6jYDhXawJUTO\/5ZlxkISrk3MX4vd4yy1lS5MAudfDgdmil\/jbL+czF9D3eEjiXU8PK9dzb8YfJ9v5u9nXyfeZCPtNiFivbuZYC0HI+c67PlO\/z5Ps73Czoy4Iz2wsWErQvdvtWvP7NvEYhrrDQxwr922V73Nwu9HmLaSmVkkIeu+Mxp5PTnZKD00lUUoQ5g4PTqWjl4HQSFZvVhATOkpLVV7d0Wrtysy+dil6AE6sruBmYTsWm1KIKzrU7FYPsgr6BU6ynA9RpJWWBmbZWkrnDAeq0IsoEE8pMiAJAjRyoTrdLWcbk867PmXlAcrkNHV\/\/+gN07tyreY95+OHv03vvfURO61oFrWy8pCcupkuX\/i\/5rW\/9C\/3+9y8tduiyX8Npbeu21Tk\/\/XS65I9\/7F0qoE5ON+i2FuEB6NWrCVdDdVqWbvsIEbt3ctbTaTm67XA69+60XN2RsXXn3p2WozvW+OHcu1OhumNwOuvpVKjuaMucs55OheiOwumSI6dCdMebjZ17d1qqVqQTHu4d4+rYOjnl0orACev53nsfOevplFcrOYfITQ9xyis3wc2paLXScK6Jdrlf\/OK\/k\/PzM8HtTZvKZXvw4LNr4vOtlFYazlWtt956Kzk6Wkfz80STkycpHA5TT08HNTaq\/VdeeSW5YcMGOnz4sIN0GXJwLkNHj36Y3LOnnMbHx2l0VN0XiewXQAHmwEAkONbzPAfpMuXgLFCwlhUVCQYzQaHoXtqz5zKdPTtDCwvnU1B6\/M9Xu77vM7BxgReQPvfccw7QJcrBWYAQW2I7UtZO933hHqrc108nTrxLPWwVPf534EAtymQ0OztNcQYSArBvDgzQk3RSbjtAly4HZwHasqWCdu7cyVbzCltEEmu5GGjPP\/98kk4xpBQRFw\/Xf\/To0aRz8YvLwblEwZ3X1T1OsdgZikZDBL+9FAv405\/+tOTQoaOcOB0XoD1PxaZOi8vBWZB8mp6e5m2ooOTm2LHDAij2YW1V\/Bl27n0ROTiXIFhNtedJdg7AChUAVVl7h9yOx+PklF8OziWqoqKCEokz7JqjDNryLB7ArK0dIdRGnRaXg3MJAkyJmm00cOoVamy8dedF9u9GkXLLwbmIlEtna3eB0orryxGsJiwwzuf7EapzBjSvHJyL6Mc\/\/rGMBM3MqLHzubk52rp1a\/LRRx+l1157rWCrFwrt5WwfFfpRN\/a+iBycOfTQQw8lL1++TP39\/VReXi7\/AGhpaals2aIWdD4zDv+Vr1zWo0aT5JRfDs4sampqSt53331s2Q6yK64NEpju7pdl29XVBWgLtnqeRzLUCaExxCm\/HJwZOnToUPLYsWMlsJjstqXJo6UlQRcvXqRNmzqlJLSc86psP0GokUKuxrm4HJwZAphmX7litd\/Ts2HZYEIo3sMCo0ZaWTl40+\/T1F4\/n+unW63P5qpkqBZ64oknVuxH5ODMkPnS0cCBf0hcolHvpmPEX\/3qV\/T222\/L\/pe\/\/OWC3w9kg5gNyonmUqqKzS16XzbZx91dOsHnn6CVloPTkuk6goVraamQMXRVNKegeXi57hhJEJIpaGxsjK1nZfLhhx8GsDecD0Aa+AqxjDaEBrZs99nbTX3lAqM5zob0yad\/sKKhh4NTC+DNz99P6NVE\/RHhIWJNjhZJ6pyjHeKScRyOLwRSwNbX10enTp2iv\/zlLzQxMSGgnjt3Dp1KySNH\/lXcaDYgxyc3UnXkerCFJuIMUHgubZspgU\/fHxzj83MpfXt3eCLtnAZMuPaVloOTFJjf+MY3Anc7PDxM58+fp9\/+9rcUiUSQvVNDQ4MMPwJQjIsXYkVhiTs7K6hx33N0+uevS4gwMDBgsn56+eX\/pBf+7R+D4wEiBBgNkNgKYB7dYP2ybSHABsgmmimnazevRbQQ\/ADwOocPr3wN1sHJ6ujoSAPz2WefpR07doiVQ01zaqqJAZ1Cb6YAGg6flwSp0L7M0NjZYP+xR1vl34l3LtIbb7xB\/3X0LXr6P54WiAQQhoxi6aCK2NqNL2ykDXG1pUmGitRtYw3lfq3qyATN+3x\/OGUdIQOxeS0DNl6zWHpNHZxaf\/vb3+iLX\/yiuF4U3\/EPwojQN795D4M6Llbuu989JH2ZoGByMn+SBHeukqrLHL\/ez8d3c6x5leFu4PsUbAB0amqfvO6+k\/swGUkBpCEz8Iyfx\/7iiU2mlDWc05AvpCwlQ00RCtw94F1K4nQn5eBkjYyMyPb69escZ7YEo0EQYsMLFy7I\/tmzZ+ngwcsSiy4sLLD1zD7WjsTKlGIaG7fqHlC8xn5mz5fnBi6UwXv++X0COlz9\/v0R6uvjeM+boQ7aQINsyZC0zHfMiFWDm55vmxGQ7H0It5HcGEuI2xv082wLaSuwpAwp3ldZWQUVixychJhQFTNRJA+FQvTCCy\/QD3\/4wyC7hhB3Hjz4soyzI4uHe8dMy0yZxEo1dXjSZqeaPSAkVpj9pvpBAWjZXDkNMlDf+c536P333xcjVsW3iQHF\/dDd+jaVzt2wf3casBMCGWA2jxuXLj8GSiVR5jkCvgX4k08\/WxQuHXJwkoqxzPRdLIjQ2tpKP\/vZz+jdd98NXDfguXvnNpqWuDHEx12mgUi65YTF3L37Iaqvr6f5+XnOyvs5sbpIr77aw7COUm3tAWpvH5JjATemayC5irC1BDgPPvigQHJXaRO1NY+yRW+SY\/Fcohm5nbk\/MlKrj60lhJye7FfQaJ0CryqsLKkNJkDdsEEBOTFPRZWh23JwaiHBqazsp3vuuUdmTwLUffueFwhhCaHPLlyh65vgouvkGMy4tAUXDjChjz\/+mI4cOUIYox8ff4c2bvx7Dg\/+nX75ywkBH0LtFHACooY2ooZm3AtrPUqJcAu\/SlSOw\/70xWmB0d6HDKDmttmvSLRQqC0q57uL76uormBIo7zfxAngqFho7BPD\/FmfCgdMKFIscnBqYWjyJz\/5SdL0bKLcg6x8dhZWzg+Ow+oeppzE7j9wgbCaCAkQX8KNI461EyvEs9VD1TRTOUN\/+MMf6Ec\/+idJrAYGfI5DZ5Tl0wJcAHCa9H0j0wGEn8d6xLLiHdWOqKnIW7ZQcBs10j6BrYfPrYYhR\/m5dQx8rQYX5\/GwJTXFfmSLsrSHdz1RNC4dcnBaMrCh+SManZdGD6lJsvtulITFgJsOphGARDIFAVBk+iZuRaY\/t5lvk2q5Ky+\/rIv8JKEDOpZgFUPxaGD9zG3IWNJEuF3uE8tYF9WxLSc9AXgqJPD5dWpHVGG\/iuNSX1x6P\/8g1FYB3J8KFawfR7HIwZlFaP5QVlR1v09dOEWNO3fmbPx48\/UXkxPxGRoampbbSJqqq6vppZdewtRgmpqaCo5tavoux6\/tQWIF2wULDbWU3yuO\/Gv1vJ2poAeub6SPGEojAyu2SHISlHqsAh14cXbnrRWy3VO+h2bqEB+XyvENAn2TjklTAFfF+qUicNeNg0wrLgdnDsEyAlCUkfor99EbL2QHMxgH10k4hinr6r4k7h1lqRdffJGOHz9Ovb29VFVVRQcOeHK\/AlOFCIhvAdDwcBdDp7Z4lJmh6hKGbOas9YoeA+pTLlV\/Xk3jAqp6TjlDmqBx2TfgYpsYqiAvxKBXsyXm7a4ic+mQgzOHEEN2z89QZf8+cbnfzzJcefr06SS+WFgnlNWZMll0prt7hrNyZUWRlR84cIDPcSiYeRmNkk60ZmQpm069ZCJAAlQJbS1hJWFhOZTVVlMt5pCAS+c7VX9oSvhB1LG1nGYXbeLVz+dOSIyK2wgLJGSAfTbnpGjwesUmB2cOARyJM70I73fzPQ\/ecAzANPFhH7p7whPUVttGV6++x9l\/k87+44xThNoXhtjtA1aVVXdzYoXzd7KV\/YeOJhkwulaZZBe\/mzZPxXmfzR+7eSW9FYZ303BNF9WP7eb9MtlvvrRDjo\/OwNVXSFgA66ugaw\/iVpN0BcnXyHQAbTHKwZlTqViwjxOjB2kh7dGjHx5N2iWcNoY58TCD0BylH3zte3TixJ\/o3XfHpD0OiRUW9rJnbyLRamtro93bqii8fSMD7Atkse29VE+75RhAitvB\/WPqfrM1+9cqSSB9QEMq99enjgF6LQJ6l9wfnfkkiF1lm3CWc1VJud0O\/vcyeYDLWqHj0qVLScSB9V\/bJomLfMGPtkgCQwII0fe+p2qjcPFTU6cYvUp6slHVNjGUGPE6BZhrfMyZ2Ce8ryBLxFrEQkr8Sep2bLaXyi\/voeG02DNdiRl1XH3l7uC5ABH7LRrUtNvGKvO2tra16OJNyMGZQ6gPDg2dF6un3HrKugiY+ouWtIbzk5Yn7qVYs3K3uH94GA+Uc+y5QK\/27JN8KRxeoNb9rXIOAD2srdek30Mn5qrYks4ECRHul+ydrRz2JanJERuK28bAE7+ZDz64IuUl5boVpAHoOGf9jfAWqxycOYTitlrXyBdAiSZlshuy65MnMaT5P9KkIa7dG5UvuTyurJtxnYoYoiZYTs74O8sqaG9ziOKXrlMYWRahK76M3oqXku+jEA9XP017H\/fUMc2zVEP6eHb92bbQtcCFszX0ZvkHso0wUAWrbgsQS3QpCVVUQK5oLU6XDjk4cwgLHqiu99QQJcDEMOfU1AVOdvZJrFZXFxUYa2pmGZYpDd0sbb60kabZ+mLos7J\/A2frPlvjA3IegAUo8Zxo9BM9fo9FZiMUiYzyY9uoZrsCF8K+AVKep2\/H+DZejcNa\/frXyavppfjUDnnsAX4PWSFuIUmekAjt2vZEUbp0yMGZQ7CSwdrZWrCklZVv8L37OH6cpMnxHnrg3g4KMxg40tueavIFHHRFAe17PQyRFzwGwIb5OcRbrP5hEiWcs5azfehMLCH1TIAv+9tDHH8mdI2T3TED2szQjXEChGRo8yUFpCRLlUjn+PySaLH75mMUvPEgsVIWfAcVsxycOYSa5NAQMvQNwRBmmEFDVzwwA1AtzXOSHcNyEbv1MR3DmbqhajSmAEy05p2JwdUyZD67VQ4J0ENprLNZaMHOpk1hHgPx1eV7pMAu9w2rIn1iYwtVc7L00cZxPmcvRfVrD\/vq+UjSrlWWSTUAyVKzABknv2ajQFvMcnDmkYk5AWIjx5xMj57\/E5HtZ3NfSiUvVkaMEhAEt47uJSOsHgKLpeQFTc5GW7duVaWl5o1EgaW1tzNUA1fNoYMJC5TLnqL7+bxjY+k1Urw3DH+G8B6jDHqoK1U+irWg\/E7FLAdnHsElN+r6JKwahhmxj+L6wEATJ0Qzss67cv8hveXbNdq9X0mdC8\/59FNU0dOXluux2u4wrKjAVDHltcAdXw\/qlyYWNfen4k51n3ptHX\/qpAvu+1o9np8qH8E6S+mriOXgzCMBR8eDABMuWMHaRFYIKRarRuJOO7JMF8IBW4gjh4aGqDEel4sZ4ImqUG5DNxskQD6pkSC\/RhXpJW7VcSfs9PB2P4g7my1o7XMZ4b69HMOWlOwq2mQIcnDmUTvmCel4EB3yGNIM2uY4w04kOmU\/yJR1Nm1kYk4jPB+Pw2qhXxNhA\/o5zWshcx8e1iM3HD+ekZKPTx98gJol\/6vrpZG3se2iwdgcNTSXqrgzrOJODH\/Wj6EakPqZhC1I7Wzffp\/FKgdnDmGNILOAAuLL2dkFsZ72BbAGBoYQKKob7CEBlN3WhkL+yMhfCWUitZxNRMCEheye62HgNbw4J\/KiraoNLhha5KiwT+b4jEq3\/OdzmGoxqq8aV0oT+n1UhXvIngeKRo+K1kRwHryesbLKCvNL1sxSscvBuQTBWmKkR2TA5Owd0WMqwYHSk5gzQ+nnwJQjVcKJC0Dz8Tp1Qv5v64GtQYFeejj1iA+mfgBSapsJ+jFtodYaDUWlyx0d76bbHS1xia0K9CifK8QWWc575roU4M+Ei7f4buTgLEBw7ZWVvRI\/wq1TXXnwmHGbttDWBojno920qbNTYlbjVke7FJiAHrEtgELxfXjWpxCMWsgMQU5Lyxz2TT+m3eIGcOWnoLvZU3OKoqgYWQ0gOhnSBXjVflfccnAuQcolq2w5M7ExCuuCt505J8IJ1XaH4U9+EJ1JMqw5di+D\/icdKnTwMScZKBTfuwQsNS9Izf3B+WAdK1p1whS00amuJTPqg7KRgReyAa6p6SI7g8OQaLEnQ5CDM49g0dD0MTBwhC3ceV2zVAmSFOX5thrJSbWfnZGtzxCq23DnOIcanydx16g3zs97fH5fFfT5XBEOJBFTEvXT3aUkSxDWshtHJdRYweF4qu9SXm82KkV4M+8I\/ZmTc0iURgVSNC8PD6OTSQGMHwx+OKYOW+xycOaRZOsyye0kgxQJbA9g66QjNBk\/KdZs8\/WNUp9EPdHewloB6vffV8+TESBOeurLd9P586epcnCQqMkT61rb1pYeM2rYlVvelv0N6nqlEaaLYG46EiXMT7+r9GPpUJIRp2YGW5e8xqi4R4aMHJx5hOwcvZjkPS+ut6q5jGPOUb6vM+36lSbWzNxCWN6lr28TeYc8ivNzpL2NoVLnToUIAMvDnHXdvAzoa3TyZIcMKflSXzWT4DDBLQQwSS1fgznwiXDKzUvD8myXWPRHtu1aFUt+OzjzaJOe2wMoEHUiw77nnlk6dcqXOUEYr4ZVqtHrvJukyAYJsSNWqMPYeMTbL0OWifAnwZi6WTmkbg6vNROUfiCTPJn3YArqqsjuUbPulEeNEz2mZj56+YOe3E636mrEaDXUN40cnBk6feV00sy56esjunbtmqxKjKv9fj53LmjOwNCmx8kM4ktYMJnXU7lbmkCw5seYPh9cNNrrzHNGR1VmrjrrI9JS1873o0AvE9dINSFLIzASGWtKBkAV6DWgMqTpA+mzQfseZJqhoeDHorfNU6vnmpsOzgyZOA\/ZL8DZvHlzYAajsVmKRNQCrujrxNA1iuTIsk2jcaZgzRob+yQxMovP9vVVyKgoSkw4GVw8ejrRgodVOpQ4c\/9AjQYZobveLvKjocNMVhuti6bFq3K8bqUzrXxSSahcHfEm5OC0lEzistP4Crs4cVBdQ7CcMg3jGVzuJSydRU1YJKFSPQcWTzVYYMnEG0fWUU6KjEYICzSgDe84W85DbTM0e36BkCchNEDihbnuDc1w61sD+NAMbLrqW6wSEiwrhj8ndXYva2xyaPm5XskD1+dERQBj8JiXNKbNOJKhYp0vlE0OTq2pi93J+CU1Lm0aOWCFtmzZot26As+4aUmUzEhQLEF7ORtWz+sKng9hkYMoYlLPlznrmCJMwXi9qn9SO6YKz1Cb9X5kyFGHF5Ic6fMaoaaJBAiWs4oBxTi7WcmD9FTfzPlBal7T6pGDU0tmLrKVklWLPRXr4YtX9UlfEpfu+Q2EDk+0v\/l+pVg9NFgMnLvMcHqqfliTmhskvZ4cC27aNETtswvCJLL3wRhy6o1yXjQge96PpBqARhJ7kQMTdyLTHqPdaRPV7DWVfL2og+3SjcwkuZaMstNqkIOTlNVE1jvs62Zcn5MSdu0oiqN0BKGBo52TofPnOR\/ZvoP6+\/+X\/GPskr+\/ICvRvfbaZTV70prZIU0b8yGOM6eDa6339f01WPpQNRxTUJZCzBkKlQYzMyHjmiXh4v14vCRYagblJ6xz5DWXBqCG4ukLJCBbD22PyqjUI9seWTUuHVr3cALMMIMp9i5oHPbElcNVRmP34KhgpbmW5jLq3PNVmY\/e1HRKEiOMjyN5gtUFgEaNjWpKxq9\/vUGK8VjxQzUt9+BRscDkTXGS5clzMXWYSC3kirIVYIO1NO1x3bEbV1KG1OOpdToxMmQy9thwV9oiDKtJ6xrO0dGLyZi1nIuJ68Q9MyzNu3cwOL185IDcRp3ys7nLctxjj87RiXdUichk7nv2lNP4eIWsWZSo2UOjF64o188PIkuH1FUxWqmKk+YT70SobvQ4SezKMWl1WF9niEH0KLUYLMCT5W5K1arE9gIPprQ1PrnA51aWdKL5rPzYALYdGqw2rWs45ctjVxnbbrrM0efYRT4SBw\/JUS+mgWspi6oahnfTt5\/qklEYzGG\/evWqWD6UgyKR\/XLVDCmSQgMRWmi3wUwJDSW+X6umgzBwE6SupAGwBvXy27CE2J\/nbOnumLk2kV1IT7+AFoRltEf4uRgOxcQ7lKR2PdG5qlw6tG7h\/PDDo9JInJrJ2Cv8\/U6vjw43eiamiuKgBfA9I+WkhaA4joUL9u\/v4jgU1kvNK1Kd7ak1keDyM6HMlJpId1KPGikwIRNTQvkuw5J5frx31JbMbCWzntNq07qEE+4crhuWEdDVW21nEL5cU4hH\/IYVO\/qpkkbK2vnRi5Q4o2YyQkigOjqinIXvUFe6ILrBkk3EL7I1bWSrOiC3zX443K6zbV+uP9S+kL5Y2GLKfB0jwB3R627ic6ym2qatdQcnwETMCBcOV+55iCm79IWvFJiIH9Fwge3YWJJ27txJb\/QPyBXYPsNVMMbP0d69pUHdcbg5So\/Vf1VZVF9deECtGqysnYFxYaFdXT3D2t+iF3SHi0ckme6y81\/1d0MHJ1ax1hvux3MactQ6V5PWFZxw5alFtkimy6YsZ1eQBBG7eLP0YA3Ho0g6OJ+m48c9du24mnBpWsHds2qjGFjHa0jcqF8XGT6SoIl4D++3yj5ixbKyLwUT5rBVdX7rKr9scRfOt1M0Psuh6wA1MuTYSiMKgI97HKf6HKe2yrHYQvY41a5dh1el1YTWDZwmxrRlrEr3WVWiafBKg+UGaeasxKEow1RH8LgqL6H1DYmPeq4CFFbYrC6XTQYcA4+8ltQmKxjImcBqowtKXe5FK6YghjVtAdwcUoTZ4sL5RyIoRw0IpAg1YInNJQtN6Wm1a83DiS4jDC1KAzBiTFIgCVTGleur8ZqZlfYa7Aa4trZ56cskP1W+MVa4uUz1ShoNxtKtXyaUmcLbYOZVEd86B461z6XOY2LMVn0fzunJORo4lDDteubSL6tZaxpOsZbxqIZQrwzMQNV4GkzzTR4y\/ZIMMMegpgXOrCiML72mpoZe65uS0RyUiwZj5wLQYG0zgYRUrJm6DbgMdKhbokiPhRWebES0uZ\/M8JK8LQtME3caWDMBR1L21PWN8j6eKlM1W7TtDdPqjTehNQlnNhcOGSv4u99okMLK2kiNU8bWVQzqeWbVNhV3Aljfb6Ltsy8Srk\/02D8\/R59dvCwueUy7cwMM4DExoEl8IDurxjFbttRSNBTSBXwFpoERTXODlBLs4iDdmPjoB2Wpw5ge5fL5R4gY2Ocbu2pXb7wJrSk4AaW42Ix11O1YcNCqYxrB4kDmOGNpYcJM3Algy8p2S239yBeukD8\/Q8cAMmV358aVTzT3sNVrTXtNmeZbwVYTA\/W6Gx6jP7aMtYXGOSmSIc8smXmzDlekOURbzDH+366S1lUNJrRm4DTWEqCJ5dBQ1SAuNEGYr5IePVoo1sVAnLEUZ5rM+LYJ5k6ePCkXGxg6P0TUodrfUi74osAYJEFZwIRwHSJYzQMHaoNla+wY045TkeXbt+0fmPywzI+p+BfxKEirGs5c7vsYUTC2jKrRILtxk\/SoGuYO5f74MV\/DPFafHmeqCWG9AZDffgpwtdIvRt+hN98katz3HG2lswxqX1BcF\/GxyKrT4booVg9NwbW1JH2dyPw7O8sl5oTLb0iLMS8GUEMYm78h1uT3VX45dQEt+8oeq7l8ZGtVwWnDGHwBGh578X0zNm1kf6mINxualRs3NU5fhjC7yBuGNTUxm443\/V6xsAC6c09Ypmq8+eYAnf756\/TMMy2SHGFs3MSU2SBD3HlX6VZOch5niN6WpApx5vx8urk277OBP8EgpWfr9meQz+p30Yx3VoUt\/KN63HucP8+xNQMmtGrgxGX8iFJjxAZU457xZQUy7puUpfQtBuzERdrQzp4M7vP1\/8xWxttNCID97aqgvm9fpczAVOf3ZGx8Iu5LnRKNxA26v3JTXxVNzN9PHR1oUK6kP\/\/5bTp+fDRIgDCWbqCGJbWtrf0eM62mFPk98171j4rWFpjQqoETq75lux+QDv4mw0rqIRIDpmkbMyBLSckzQ42LFKt9KxwNjq+VOedYXKG7u1uuZQkL2tiYoFBI9XXiisBIetDP6fshtpavS0+oGgXypftInUvVJo0btxMhue2nl6CMp0CVIBr+RKaH4Pm7StYWmNCqgTOXbGuRGYMai2k6jxBXkt8l9T9vOBVn2tDmG4u2LZhaP6lFroAxe+EUW8aIWEIzwzIa7Qg63NUqdWFp7MDojh1jNmjXj+0gb81cpZyvT6XBZwpZnxGf3VnOIlauLyetPU5LvlPdz+nrcfVhz8SddGNiRFZMaFnbJ2mSBijVdKzObLZmXU6lzLhUbVv1+bz0oUtb2lp27tl\/w4\/H9H3m8iyrWWsKzlzKhNa2sGlftp+yrqa+KcOSXsaQp0eBBTOgmbY4KDVHSAnXIErVPVXmng10WyYUwetuxpI0MhCg3otd\/nry6R+sOSiN1gWcmcpnYW1Yg+xfJx4YRzeZcpBoaVC\/WXYwo14asc4cSYUEGsycWbgJM8zWFPn1eYPkzKc1lwBlal3CmUvZvmwAaxd87FEkuXIbg4owIOan10sz49gG1El9ymkxFaxdNHiWt82l6YmYZS2lh1Sff63LwbmI8iVcpshvGkjEkg6n4laJY6krKPzHvN7syVeWMMEWHjPTSKSZg89fssatJuTgLEC53Ojp06eTmOtu5Af\/00V+qcH2psW0BlqxwIhnqSsAWhIf3VVvy4QGu9YBmJCD8xbokUfSFyvAgIEZSkxLuPRggTDokZ7m0SUgSne+b2qzyjqaJhYD6XoCE3Jw3gZlK+sgJMA1hNSENkq5aEpvQvH93iAxMnGsFNnXEZRGDs47pEy4bOuaNlxKenhSx62+vz7BhBycK6RcRfM3X38xCff9Oz0atF7BhP4fd7i2pKNyZccAAAAASUVORK5CYII=",
+                "caption": "",
+                "badges": []
+            }
+        }
+    ],
+    "recycleBin": [],
+    "autostart": [
+        "profile",
+        "intel",
+        "links",
+        "cw_1780475001304"
+    ],
+    "autostartPos": {
+        "profile": {
+            "x": 392,
+            "y": 66,
+            "w": 416
+        },
+        "intel": {
+            "x": 547,
+            "y": 458,
+            "w": 460
+        },
+        "links": {
+            "x": 1353,
+            "y": 223,
+            "w": 295
+        },
+        "watch": {
+            "x": 86,
+            "y": 320,
+            "w": 520
+        },
+        "fileexplorer": {
+            "x": 300,
+            "y": 80,
+            "w": 560
+        },
+        "settings": {
+            "x": 400,
+            "y": 130,
+            "w": 360
+        },
+        "recyclebin": {
+            "x": 240,
+            "y": 170,
+            "w": 380
+        },
+        "texteditor": {
+            "x": 200,
+            "y": 100,
+            "w": 500
+        },
+        "cw_1780475001304": {
+            "x": 981,
+            "y": 101,
+            "w": 260
+        }
+    },
+    "theme": "dark",
+    "bgImage": ".\/data\/backgrounds\/bg_1780477668.jpg",
+    "bgImageDefault": null,
+    "loadingDuration": 600,
+    "loadingText": "INITIALIZING DESKTOP",
+    "hiddenFolders": [
+        "Bilder\/Clippy",
+        "Bilder\/CustomWindows",
+        "Bilder\/Profil"
+    ],
+    "osName": "FABIAN",
+    "osSub": "ENDFIELD OS \/\/ v3.0",
+    "osHighlight": "B",
+    "themeBg": [],
+    "intelTitles": {
+        "background": "BACKGROUND",
+        "specializations": "SPECIALIZATIONS"
+    },
+    "loadingEnabled": true,
+    "customThemes": [
+        {
+            "id": "t1780607815855320",
+            "name": "Slate Clean",
+            "sub": "Minimal · Blue-Grey",
+            "vars": {
+                "--bg": "#2b303a",
+                "--panel": "#222730",
+                "--card": "#2a2f39",
+                "--lift": "#333a45",
+                "--acc": "#6f8fb5",
+                "--acc-dim": "#6f8fb522",
+                "--acc-b": "#6f8fb559",
+                "--acc-glow": "#6f8fb566",
+                "--hex": "#6f8fb510",
+                "--sec": "#8a9bb0",
+                "--t1": "#eef2f6",
+                "--t2": "#9aa6b4",
+                "--t3": "#5a6573",
+                "--t4": "#3a424e",
+                "--smenu-bg": "rgba(26,30,38,0.92)",
+                "--taskbar-bg": "rgba(26,30,38,0.92)",
+                "--ck-display": "none",
+                "--stripe-anim": "stripe-flow 3s linear infinite"
+            }
+        }
+    ],
+    "appVisibility": {
+        "profile": {
+            "menu": true,
+            "desktop": false,
+            "hidden": false,
+            "mobile": true
+        },
+        "intel": {
+            "menu": true,
+            "desktop": false,
+            "hidden": false,
+            "mobile": true
+        },
+        "links": {
+            "menu": true,
+            "desktop": false,
+            "hidden": false,
+            "mobile": true
+        },
+        "watch": {
+            "menu": true,
+            "desktop": false,
+            "hidden": false,
+            "mobile": false
+        },
+        "texteditor": {
+            "menu": false,
+            "desktop": false,
+            "hidden": false,
+            "mobile": false
+        },
+        "settings": {
+            "menu": true,
+            "desktop": false,
+            "hidden": false,
+            "mobile": false
+        },
+        "recyclebin": {
+            "menu": false,
+            "desktop": true,
+            "hidden": false,
+            "mobile": false
+        },
+        "fileexplorer": {
+            "menu": true,
+            "desktop": false,
+            "hidden": false,
+            "mobile": false
+        },
+        "cw_1780475001304": {
+            "menu": false,
+            "desktop": false,
+            "hidden": true,
+            "mobile": false
+        }
+    },
+    "desktopIconPos": [],
+    "windowLayers": [],
+    "frameless": {
+        "cw_1780475001304": false
+    },
+    "fixedPos": {
+        "cw_1780475001304": false
+    },
+    "profileLayout": [
+        "avatar",
+        "badges",
+        "text",
+        "stats"
+    ],
+    "intelLayout": [
+        "text",
+        "badges"
+    ],
+    "nameSize": {
+        "first": 38,
+        "last": 20
+    },
+    "clippy": {
+        "enabled": false,
+        "images": [],
+        "minSec": 45,
+        "maxSec": 120
+    },
+    "clippys": [
+        {
+            "id": "cl1780596028203",
+            "name": "Clippy 1",
+            "enabled": true,
+            "minSec": 10,
+            "maxSec": 20,
+            "images": [
+                ".\/data\/files\/Bilder\/Clippy\/images.png"
+            ]
+        }
+    ],
+    "windowVisibility": {
+        "profile": {
+            "startMenu": true,
+            "desktop": false,
+            "taskbar": true,
+            "hidden": false
+        },
+        "intel": {
+            "startMenu": true,
+            "desktop": false,
+            "taskbar": true,
+            "hidden": false
+        },
+        "links": {
+            "startMenu": true,
+            "desktop": false,
+            "taskbar": true,
+            "hidden": false
+        },
+        "watch": {
+            "startMenu": true,
+            "desktop": false,
+            "taskbar": true,
+            "hidden": false
+        },
+        "texteditor": {
+            "startMenu": false,
+            "desktop": false,
+            "taskbar": false,
+            "hidden": true
+        },
+        "settings": {
+            "startMenu": false,
+            "desktop": true,
+            "taskbar": false,
+            "hidden": true
+        },
+        "recyclebin": {
+            "startMenu": false,
+            "desktop": true,
+            "taskbar": false,
+            "hidden": false
+        },
+        "fileexplorer": {
+            "startMenu": true,
+            "desktop": true,
+            "taskbar": true,
+            "hidden": false
+        },
+        "cw_1780475001304": {
+            "startMenu": false,
+            "desktop": false,
+            "taskbar": false,
+            "hidden": true
+        }
+    },
+    "osSubtitle": "ENDFIELD OS \/\/ v3.0",
+    "osHighlightIdx": 2,
+    "nameLine1": {
+        "text": "FABIAN",
+        "size": 38,
+        "weight": 800
+    },
+    "nameLine2": {
+        "text": "SCHWARZ",
+        "size": 24,
+        "weight": 600
+    },
+    "webBadges": []
+}

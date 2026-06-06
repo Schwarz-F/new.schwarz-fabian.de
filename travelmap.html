@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~fabian // travelmap</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root{
+    --paper:#0d121f; --paper2:#3f465893; --ink:#bfdaff;
+    --rust:#e08358; --mustard:#2d44c4; --teal:#4fc7ad; --plum:#c98bb0;
+    --line:#3a3f4b; --faded:#8a909c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+    body{
+   background: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(224,131,88,.06), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(79,199,173,.06), transparent 40%);
+    color: var(--ink);
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 15px; 
+    line-height: 1.6;
+
+    /* DIE LÖSUNG */
+    min-height: 100vh; 
+    margin: 0;
+  }
+  a{color:var(--rust);text-decoration:none}
+  a:hover{color:var(--mustard)}
+  .wrap{display:flex;max-width:1000px;margin:0 auto;padding:28px 18px}
+  .nav{width:180px;flex-shrink:0;padding-top:64px;position:sticky;top:28px;align-self:flex-start}
+  .nav .home{color:var(--mustard);font-weight:700;margin-bottom:8px;letter-spacing:1px;
+      transform:rotate(-1deg);display:inline-block;text-decoration:none;cursor:pointer}
+  .nav a.home:hover{color:var(--rust)}  .nav a{display:block;color:var(--faded);padding:2px 0;font-size:14px}
+  .nav a:not(.home)::before{content:'├─ ';color:var(--line)}
+  .nav a:not(.home):last-child::before{content:'└─ ';color:var(--line)}
+  .nav a:hover{color:var(--rust)}
+  .main{flex:1;min-width:0;padding-left:28px;border-left:1px dashed var(--line)}
+  .head{transform:rotate(-1.2deg);margin:0 0 26px 6px}
+  .head h1{font-size:32px;color:var(--ink)}
+  .head h1 .blink{color:var(--rust);animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .h{display:inline-block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+    color:var(--paper);background:var(--mustard);padding:2px 9px;margin:22px 0 12px;
+    transform:rotate(-.8deg);box-shadow:3px 3px 0 #000}
+  .note{color:var(--faded);font-style:italic;font-size:13px}
+  #map{height:420px;border:1px dashed var(--line);margin-bottom:14px;
+    background:var(--paper2);filter:saturate(.85)}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--paper2);color:var(--ink);
+    border:1px solid var(--line);border-radius:0;font-family:inherit}
+  .leaflet-container{background:#0a0f1a;font-family:inherit}
+  ul{list-style:none}
+  .place{display:flex;gap:10px;align-items:baseline;padding:6px 0;border-bottom:1px dashed rgba(191,218,255,.12)}
+  .place:last-child{border:none}
+  .dot{width:9px;height:9px;flex-shrink:0;border:1px solid var(--ink)}
+  .dot.visited{background:var(--teal)} .dot.want{background:var(--mustard)} .dot.home{background:var(--rust)}
+  .place .city{color:var(--ink);font-weight:700;cursor:pointer}
+  .place .city:hover{color:var(--rust)}
+  .place .meta{color:var(--faded);font-size:12px}
+  .err{color:var(--rust);font-weight:700}
+  /* Foto-Galerie */
+  #gallery-box{border:2px solid var(--line);background:var(--paper2);box-shadow:6px 6px 0 #000;
+    padding:14px;margin-bottom:14px;min-height:60px}
+  #gallery-title{color:var(--teal);font-weight:700;margin-bottom:10px}
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
+  .gthumb{aspect-ratio:1;overflow:hidden;border:1px solid var(--line);cursor:pointer;transition:border-color .1s}
+  .gthumb:hover{border-color:var(--rust)}
+  .gthumb img{width:100%;height:100%;object-fit:cover;display:block}
+  /* Lightbox */
+  #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;
+    justify-content:center;z-index:5000;cursor:pointer}
+  #lightbox.open{display:flex}
+  #lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;border:2px solid var(--line)}
+  @media(max-width:720px){.wrap{flex-direction:column;padding:16px}
+    .nav{width:100%;padding-top:0;position:static;margin-bottom:18px}
+    .nav a{display:inline-block;margin-right:10px}.nav a::before{content:''}
+    .main{padding-left:0;border-left:none}
+    #map{height:320px}}
+  footer{color:var(--faded);font-size:12px;margin-top:30px;
+    border-top:2px dashed var(--line);padding-top:10px;transform:rotate(.4deg)}
+  .err{color:var(--rust);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="home" href="/index.html">~/fabian</a>
+    
+    <a href="/travelmap.html">/travelmap</a>
+    <a href="/suggestions.html">/suggestions</a>
+    <a href="/music.html">/music</a>
+    <a href="/desktop.html">/desktop</a>
+  </nav>
+  <div class="main">
+    <div class="head"><h1>travelmap<span class="sblink">_</span></h1></div>
+    <span class="note">// Where I've been and wanna go</span>
+    <div id="map"></div>
+
+    <div id="gallery-section" style="display:none">
+  <div id="gallery-box">
+    <div id="gallery-title">// wähle einen ort</div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</div>
+
+    <ul id="place-list"><li class="note">// lädt…</li></ul>
+    <footer>idk what to write here · <script>document.write(new Date().getFullYear())</script></footer>
+  </div>
+</div>
+
+<div id="lightbox"><img src="" alt=""></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+// Basis-Ordner unter data/files/, in dem pro Ort ein Unterordner liegt
+const TRAVEL_ROOT='Travel';
+
+const DEFAULT_PLACES=[
+
+];
+const COLORS={home:'#e08358', visited:'#4fc7ad', want:'#2d44c4'};
+
+let API=false, map, markers={};
+
+// Ordnername aus Städtenamen ableiten (nur von api.php erlaubte Zeichen)
+function folderFor(p){
+  if(p.folder) return p.folder; // optional manuell gesetzt
+  const clean=(p.city||'ort').replace(/[^a-zA-Z0-9_\-\s\u00C0-\u024F]/g,'').trim();
+  return TRAVEL_ROOT+'/'+clean;
+}
+
+async function ping(){
+  try{const r=await fetch('./api.php?action=ping',{signal:AbortSignal.timeout(2000)});API=r.ok;}
+  catch{API=false;}
+}
+
+function initMap(){
+  map=L.map('map',{worldCopyJump:true,minZoom:2}).setView([45,15],3);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19
+  }).addTo(map);
+}
+
+async function loadPlaces(){
+  try{const r=await fetch('./data/travel.json',{cache:'no-cache'});
+    if(r.ok){const d=await r.json();if(Array.isArray(d)&&d.length)return d;}}catch(e){}
+  return DEFAULT_PLACES;
+}
+
+// Für jeden Ort den Ordner anlegen (idempotent: create_folder legt nur an, wenn nicht vorhanden)
+async function ensureFolders(places){
+  if(!API)return;
+  for(const p of places){
+    const folder=folderFor(p);                 // z.B. "Travel/Köln"
+    try{
+      await fetch('./api.php?action=list_folder&folder='+encodeURIComponent(folder));
+    }catch(e){}
+  }
+}
+
+function render(places){
+  places.forEach((p,i)=>{
+    if(typeof p.lat!=='number'||typeof p.lon!=='number')return;
+    const color=COLORS[p.status]||'#4fc7ad';
+    const m=L.circleMarker([p.lat,p.lon],{radius:7,color:'#000',weight:1,fillColor:color,fillOpacity:.9}).addTo(map);
+    m.bindPopup(`<b>${esc(p.city)}</b>${p.country?' ('+esc(p.country)+')':''}`+
+      `${p.note?'<br>'+esc(p.note):''}<br>`);if(p.note!="irgendwann!"){`<i>Klick für Fotos</i>}`
+            m.on('click',()=>loadGallery(p));
+
+      };
+    markers[i]=m;
+  });
+  const pts=places.filter(p=>typeof p.lat==='number').map(p=>[p.lat,p.lon]);
+  if(pts.length)map.fitBounds(pts,{padding:[40,40],maxZoom:6});
+
+  const list=document.getElementById('place-list');
+  list.innerHTML=places.map((p,i)=>{
+    const dc=p.status||'visited';
+    return `<li class="place"><span class="dot ${dc}"></span>
+      <span class="city" onclick="focusPlace(${i})">${esc(p.city)}</span>
+      <span class="meta">${esc(p.country||'')}${p.note?' · '+esc(p.note):''}${p.status==='want'?' · (geplant)':''}</span></li>`;
+  }).join('');
+  window._places=places;
+}
+
+function focusPlace(i){
+  const m=markers[i];if(!m)return;
+  map.setView(m.getLatLng(),7,{animate:true});m.openPopup();
+  loadGallery(window._places[i]);
+}
+window.focusPlace=focusPlace;
+
+// Fotos eines Ortes automatisch aus dem Ordner laden
+async function loadGallery(p){
+  const section=document.getElementById('gallery-section');
+  const title=document.getElementById('gallery-title');
+  const grid=document.getElementById('gallery-grid');
+
+  // Ohne Server: gar nicht anzeigen
+  if(!API){ section.style.display='none'; return; }
+
+  // während des Ladens vorerst ausblenden
+  section.style.display='none';
+
+  const folder=folderFor(p);
+  try{
+    const r=await fetch('./api.php?action=list_folder&folder='+encodeURIComponent(folder));
+    const data=r.ok?await r.json():{files:[]};
+    const imgs=(data.files||[]).filter(f=>f.ext==='jpg'||f.ext==='png');
+
+    if(imgs.length){
+      title.textContent='// '+(p.city||'ort');
+      grid.innerHTML=imgs.map(f=>
+        `<div class="gthumb" onclick="openLightbox('${esc(f.url)}')"><img src="${esc(f.url)}" loading="lazy" alt=""></div>`
+      ).join('');
+      section.style.display='';      // nur jetzt einblenden
+    }else{
+      section.style.display='none';  // keine Bilder → komplett verstecken
+    }
+  }catch(e){
+    section.style.display='none';
+  }
+}
+window.loadGallery=loadGallery;
+
+function openLightbox(url){
+  const lb=document.getElementById('lightbox');
+  lb.querySelector('img').src=url;lb.classList.add('open');
+}
+window.openLightbox=openLightbox;
+document.getElementById('lightbox').addEventListener('click',function(){this.classList.remove('open');});
+
+(async()=>{
+  await ping();
+  initMap();
+  const places=await loadPlaces();
+  await ensureFolders(places);   // Ordner pro Ort anlegen
+  render(places);
+})().catch(e=>{
+  document.getElementById('place-list').innerHTML='<li class="err">// fehler beim laden</li>';
+  console.error(e);
+});
+</script>
+</body>
+</html>

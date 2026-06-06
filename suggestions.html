@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~fabian // suggestions</title>
+<style>
+  :root{
+    --paper:#0d121f; --paper2:#3f465893; --ink:#bfdaff;
+    --rust:#e08358; --mustard:#2d44c4; --teal:#4fc7ad; --plum:#c98bb0;
+    --line:#3a3f4b; --faded:#8a909c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(224,131,88,.06), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(79,199,173,.06), transparent 40%);
+    color: var(--ink);
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 15px; 
+    line-height: 1.6;
+    min-height: 100vh; 
+    margin: 0;}
+  a{color:var(--rust);text-decoration:none}
+  a:hover{color:var(--mustard)}
+  .wrap{display:flex;max-width:1000px;margin:0 auto;padding:28px 18px}
+  .nav{width:180px;flex-shrink:0;padding-top:64px;position:sticky;top:28px;align-self:flex-start}
+  .nav .home{color:var(--mustard);font-weight:700;margin-bottom:8px;letter-spacing:1px;
+      transform:rotate(-1deg);display:inline-block;text-decoration:none;cursor:pointer}
+  .nav a.home:hover{color:var(--rust)}
+  .nav a{display:block;color:var(--faded);padding:2px 0;font-size:14px}
+  .nav a:not(.home)::before{content:'├─ ';color:var(--line)}
+  .nav a:not(.home):last-child::before{content:'└─ ';color:var(--line)}
+  .nav a:hover{color:var(--rust)}
+  .main{flex:1;min-width:0;padding-left:28px;border-left:1px dashed var(--line)}
+  .head{transform:rotate(-1.2deg);margin:0 0 26px 6px}
+  .head h1{font-size:32px;color:var(--ink)}
+  .h{display:inline-block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+    color:var(--paper);background:var(--mustard);padding:2px 9px;margin:22px 0 12px;
+    transform:rotate(-.8deg);box-shadow:3px 3px 0 #000}
+  .note{padding:12px 14px;color:var(--faded);font-style:italic;font-size:13px}
+
+  .quote{border:2px dashed var(--line);padding:12px 14px;margin:10px 0 18px;
+    color:var(--ink);font-style:italic;transform:rotate(-.4deg);max-width:640px}
+  .quote .speaker{color:var(--teal);font-weight:700;font-style:normal}
+  .quote .src{display:block;margin-top:8px;font-size:11px;color:var(--faded);font-style:normal;
+    letter-spacing:1px;text-transform:uppercase}
+
+  .card{padding:12px 14px;margin:10px 0 18px}
+  label{display:block;font-size:11px;color:var(--rust);margin:10px 0 3px;letter-spacing:1px;text-transform:uppercase}
+  input,textarea,select{width:100%;background:#080d18;border:1px solid var(--line);color:var(--ink);
+    font-family:inherit;font-size:14px;padding:8px 10px;outline:none}
+  input:focus,textarea:focus{border-color:var(--rust)}
+  textarea{min-height:90px;resize:vertical}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+  button{margin-top:14px;background:transparent;border:2px solid var(--ink);color:var(--ink);
+    font-family:inherit;font-size:13px;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 #000;
+    transition:transform .1s}
+  button:hover{transform:translate(-1px,-1px);border-color:var(--rust);color:var(--rust)}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  .ok{color:var(--teal);font-weight:700} .err{color:var(--rust);font-weight:700}
+  @media(max-width:720px){.wrap{flex-direction:column;padding:16px}
+    .nav{width:100%;padding-top:0;position:static;margin-bottom:18px}
+    .nav a{display:inline-block;margin-right:10px}.nav a::before{content:''}
+    .main{padding-left:0;border-left:none}}
+   footer{color:var(--faded);font-size:12px;margin-top:30px;
+    border-top:2px dashed var(--line);padding-top:10px;transform:rotate(.4deg)}
+  .err{color:var(--rust);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="home" href="/index.html">~/fabian</a>
+    <a href="/travelmap.html">/travelmap</a>
+    <a href="/suggestions.html">/suggestions</a>
+    <a href="/music.html">/music</a>
+    <a href="/desktop.html">/desktop</a>
+  </nav>
+  <div class="main">
+    <div class="head"><h1>suggestions_</h1></div>
+
+    <div class="quote">
+      <span class="speaker">Sheldon:</span> Oh, President Siebert, I assume you’d like to respond to one of the suggestions I put in the box by your office.<br>
+      <span class="speaker">Siebert:</span> No, and stop installing suggestion boxes everywhere.
+      <span class="src">The Big Bang Theory · S05E16</span>
+    </div>
+
+    <div class="card" id="sg-card">
+        <div class="h">Input your suggestion</div>
+                <span class="note">// any suggestions? (anime, musik, or anything else)</span>
+
+      <label>Name (optional)</label>
+      <input type="text" id="sg-name" placeholder="anonymous" maxlength="40">
+      <label>Category</label>
+      <select id="sg-cat">
+        <option>Anime</option><option>Series</option><option>Film</option>
+        <option>Music</option><option>Other</option>
+      </select>
+      <label>Suggestion</label>
+      <textarea id="sg-text" placeholder="e.g., check out ..." maxlength="400"></textarea>
+
+      <!-- Mini-CAPTCHA -->
+      <label id="cap-label">// calculate</label>
+      <input type="text" id="sg-captcha" inputmode="numeric" autocomplete="off" placeholder="?">
+
+      <!-- Honeypot (für Menschen unsichtbar) -->
+      <input class="hp" type="text" id="sg-website" tabindex="-1" autocomplete="off" placeholder="Leave empty">
+
+      <button id="sg-send">▶ Submit</button>
+      <div id="sg-status" style="margin-top:10px"></div>
+      <footer>idk what to write here · <script>document.write(new Date().getFullYear())</script></footer>
+
+    </div>
+  </div>
+  
+</div>
+
+<!-- verstecktes iframe: verhindert Weiterleitung zu Google -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>
+
+<script>
+/* ── KONFIG: hier eintragen ───────────────── */
+const GFORM_ID    = '1FAIpQLScFI5FHVJBKyGxIawUh_1mmQsuf1zj_dyx9joXf3WTa7-EZog';        // aus der Formular-URL
+const ENTRY_NAME  = 'entry.725180336';      // Feld-ID: Name
+const ENTRY_CAT   = 'entry.1450354384';      // Feld-ID: Kategorie
+const ENTRY_TEXT  = 'entry.2013973822';      // Feld-ID: Vorschlag
+
+
+const $=id=>document.getElementById(id);
+const formLoadedAt=Date.now();
+let capA=0, capB=0;
+
+function newCaptcha(){
+  capA=Math.floor(Math.random()*8)+1;
+  capB=Math.floor(Math.random()*8)+1;
+  $('cap-label').textContent=`// are you a human? ${capA} + ${capB} = ?`;
+  $('sg-captcha').value='';
+}
+newCaptcha();
+
+function submit(){
+  const btn=$('sg-send');
+  const name=$('sg-name').value.trim();
+  const cat=$('sg-cat').value;
+  const text=$('sg-text').value.trim();
+  const st=$('sg-status');
+
+  // 1) Honeypot
+  if($('sg-website').value){return;}
+
+  // 2) Zeitfalle (zu schnell = Bot)
+  if(Date.now()-formLoadedAt < 2500){
+    st.className='err';st.textContent='// a moment please…';return;
+  }
+
+  // 3) Pflichtfeld
+  if(!text){st.className='err';st.textContent='// suggestion cannot be empty';return;}
+
+  // 4) Mini-CAPTCHA
+  const capAns=parseInt(($('sg-captcha').value||'').trim(),10);
+  if(capAns !== capA+capB){
+    st.className='err';st.textContent='// calculation is incorrect';newCaptcha();return;
+  }
+
+  // 5) Verstecktes Google-Form bauen & absenden
+  btn.disabled=true;
+  st.className='note';st.textContent='// sende…';
+
+  const f=document.createElement('form');
+  f.action=`https://docs.google.com/forms/d/e/${GFORM_ID}/formResponse`;
+  f.method='POST';
+  f.target='hidden_iframe';
+  const add=(n,v)=>{const i=document.createElement('input');i.type='hidden';i.name=n;i.value=v;f.appendChild(i);};
+  add(ENTRY_NAME, name||'anonym');
+  add(ENTRY_CAT,  cat);
+  add(ENTRY_TEXT, text);
+  document.body.appendChild(f);
+  f.submit();
+
+  // 6) Optimistisches Feedback (echte Bestätigung ist nicht auslesbar)
+  setTimeout(()=>{
+    f.remove();
+    $('sg-name').value='';$('sg-text').value='';
+    newCaptcha();
+    btn.disabled=false;
+    st.className='ok';st.textContent='// thank you! your suggestion has been submitted';
+  }, 800);
+}
+
+$('sg-send').onclick=submit;
+</script>
+</body>
+</html>

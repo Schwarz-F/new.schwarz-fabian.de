@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~fabian</title>
+<style>
+  :root{
+    --paper:#0d121f; --paper2:#3f465893; --ink:#bfdaff;
+    --rust:#e08358; --mustard:#2d44c4; --teal:#4fc7ad; --plum:#c98bb0;
+    --line:#3a3f4b; --faded:#8a909c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(224,131,88,.06), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(79,199,173,.06), transparent 40%);
+    color: var(--ink);
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 15px; 
+    line-height: 1.6;
+
+    /* DIE LÖSUNG */
+    min-height: 100vh; 
+    margin: 0;
+  }
+  a{color:var(--rust);text-decoration:none}
+  a:hover{color:var(--mustard);border-bottom-color:var(--paper)}
+
+  .wrap{display:flex;max-width:1000px;margin:0 auto;padding:28px 18px;gap:0}
+  .nav{width:180px;flex-shrink:0;padding-top:64px;position:sticky;top:28px;align-self:flex-start}
+  .nav .home{color:var(--mustard);font-weight:700;margin-bottom:8px;letter-spacing:1px;
+      transform:rotate(-1deg);display:inline-block;text-decoration:none;cursor:pointer}
+  .nav a.home:hover{color:var(--rust)}  .nav a{display:block;color:var(--faded);padding:2px 0;font-size:14px}
+  .nav a:not(.home)::before{content:'├─ ';color:var(--line)}
+  .nav a:not(.home):last-child::before{content:'└─ ';color:var(--line)}
+  .nav a:hover{color:var(--rust)}
+  .main{flex:1;min-width:0;padding-left:28px;border-left:1px dashed var(--line)}
+
+  .head{transform:rotate(-1.2deg);margin:0 0 26px 6px}
+  .head h1{font-size:38px;letter-spacing:-1px;color:var(--ink);font-weight:700}
+  .head h1 .blink{color:var(--rust);animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .head .role{display:inline-block;background:var(--ink);color:var(--paper);
+    padding:1px 8px;font-size:12px;margin-top:6px;transform:rotate(.6deg)}
+
+  .h{display:inline-block;font-size:13px;font-weight:700;text-transform:uppercase;
+    letter-spacing:2px;color:var(--paper);background:var(--mustard);
+    padding:2px 9px;margin:26px 0 12px;transform:rotate(-.8deg);box-shadow:3px 3px 0 #000}
+  .note{color:var(--faded);font-style:italic;font-size:13px}
+  .secret-note{color:var(--paper);font-style:italic;font-size:13px}
+
+  .me{display:flex;gap:16px;align-items:flex-start}
+  /* NEU: relative Position für die Status-Leuchte */
+  .me-pic{position:relative;width:84px;height:84px;border:2px solid var(--ink);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px;
+    background:var(--rust);color:var(--paper);box-shadow:4px 4px 0 #000;transform:rotate(2deg);overflow:visible}
+  .me-pic img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* NEU: Discord-Status-Leuchte (wie im Bild, unten rechts am Avatar) */
+  .sdot{position:absolute;bottom:-4px;right:-4px;width:18px;height:18px;border-radius:50%;
+    border:3px solid var(--paper);background:#747f8d;z-index:3}
+  .sdot.online{background:#43b581}
+  .sdot.idle{background:#faa61a}
+  .sdot.dnd{background:#f04747}
+  .sdot.offline{background:#747f8d}
+
+  /* NEU: Discord-Zeile mit Username + Statustext */
+  .dc-line{display:flex;align-items:center;gap:6px;margin:6px 0 4px;font-size:13px}
+  .dc-uname{color:var(--teal);font-weight:700}
+  .dc-stxt{font-size:12px}
+  .dc-stxt.online{color:#43b581}.dc-stxt.idle{color:#faa61a}
+  .dc-stxt.dnd{color:#f04747}.dc-stxt.offline{color:var(--faded)}
+
+  ul{list-style:none}
+  .row{display:flex;gap:10px;align-items:baseline;padding:5px 0}
+  .row .b{font-size:18px;line-height:1}
+  .row .code{color:var(--faded);font-size:12px;min-width:48px}
+
+  .wl li{padding:4px 0;border-bottom:1px dashed rgba(231,236,243,.12)}
+  .wl li:last-child{border:none}
+  .dot{display:inline-block;width:9px;height:9px;margin-right:6px;border:1px solid var(--ink)}
+  .s-watching{background:var(--teal)} .s-completed{background:var(--mustard)}
+  .s-planning{background:transparent} .s-dropped{background:var(--rust)}
+  .tag{font-size:11px;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+    padding:0 6px;margin-left:6px}
+
+  .wb-wall{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .wb{display:block;line-height:0;border:2px solid var(--ink);box-shadow:3px 3px 0 #000;
+    transition:transform .1s}
+  .wb:hover{transform:translate(-1px,-1px) rotate(-2deg);background:transparent}
+  .wb img{display:block;width:88px;height:31px;image-rendering:pixelated}
+
+  footer{color:var(--faded);font-size:12px;margin-top:30px;
+    border-top:2px dashed var(--line);padding-top:10px;transform:rotate(.4deg)}
+  .err{color:var(--rust);font-weight:700}
+
+  @media(max-width:720px){
+    .wrap{flex-direction:column;padding:16px}
+    .nav{width:100%;padding-top:0;position:static;margin-bottom:18px}
+    .nav a{display:inline-block;margin-right:10px}
+    .nav a::before,.nav a:last-child::before{content:''}
+    .main{padding-left:0;border-left:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav">
+    <a class="home" href="/index.html">~/fabian</a>
+    <a href="/travelmap.html">/travelmap</a>
+    <a href="/suggestions.html">/suggestions</a>
+    <a href="/music.html">/music</a>
+    <a href="desktop.html">/desktop</a>
+  </nav>
+  <div class="main" id="app"><span class="note">// lade meine kram-seite…</span></div>
+</div>
+
+<script>
+const DEFAULT_CFG = {};
+const DEFAULT_LINKS = [];
+
+/* ── Cache (wie in index.txt) ── */
+const CACHE={
+  get(k){try{return JSON.parse(localStorage.getItem('fos_cache_'+k));}catch{return null;}},
+  set(k,v){try{localStorage.setItem('fos_cache_'+k,JSON.stringify(v));}catch{}}
+};
+
+const esc=s=>(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const aboutClean=s=>(s||'').replace(/<(?!\/?(span|br)\b)[^>]*>/gi,'');
+
+let CFG={};
+
+async function loadConfig(){
+  try{const r=await fetch('./api.php?action=read_config',{signal:AbortSignal.timeout(2500)});
+    if(r.ok){return {...DEFAULT_CFG, ...await r.json()};}}catch(e){}
+  try{const ls=JSON.parse(localStorage.getItem('fos_cfg')||'{}');
+    if(Object.keys(ls).length)return {...DEFAULT_CFG, ...ls};}catch(e){}
+  return DEFAULT_CFG;
+}
+
+function render(cfg){
+  CFG=cfg;
+  const links = Array.isArray(cfg.links)&&cfg.links.length ? cfg.links : DEFAULT_LINKS;
+  const np=(cfg.operatorName||'').trim().split(' ');
+  const ini = (np[0]||'?').substring(0,2).toUpperCase();
+
+  const linksH=links.map(l=>
+    `<div class="row"><span class="b"></span>`+
+    `<span>${esc(l.title)}:</span>`+
+    `<a href="${esc(l.url)}" target="_blank" rel="noopener">${l.sub?esc(l.sub):esc(l.url)}</a></div>`).join('');
+
+  const wlH=(cfg.watchlist||[]).map(w=>
+    `<li><span class="dot s-${esc(w.status)}"></span>${esc(w.title)}`+
+    `<span class="tag">${esc(w.type)}</span><span class="tag">${esc(w.ep||'')}</span></li>`).join('');
+
+  // Profilbild: cfg.profilePicture > (später Discord-Avatar via JS) > Initialen
+  const avInner = cfg.profilePicture
+    ? `<img id="me-img" src="${esc(cfg.profilePicture)}" alt="">`
+    : `<span id="me-ini">${ini}</span>`;
+
+  document.getElementById('app').innerHTML=`
+    <div class="head">
+      <h1>hi, i'm ${esc(np[0])}<span class="blink">_</span></h1>
+      <div class="role">${esc(cfg.operatorRole||'')}</div>
+    </div>
+
+    <a id="about"></a>
+    <div class="h">About Me</div>
+    <span class="note">// i'm a note</span>
+    <div class="me">
+      <div class="me-pic" id="me-pic">
+        ${avInner}
+        <span class="sdot offline" id="dc-sdot"></span>
+      </div>
+      <div>
+        <a class="dc-line" href="${esc(cfg.discordUrl||'#')}" target="_blank" rel="noopener" style="text-decoration:none">
+          <span class="dc-uname" id="dc-uname">${esc(cfg.discordName||'---')}</span>
+          <span style="color:var(--line)">•</span>
+          <span class="dc-stxt offline" id="dc-stxt">Offline</span>
+        </a>
+        <div>${aboutClean(cfg.aboutHtml)}</div>
+      </div>
+    </div>
+
+    <a id="links"></a>
+    <div class="h">where to find me</div>
+    <span class="secret-note">// i'm a secret note</span>
+    <div><ul>${linksH}</ul></div>
+
+    <a id="watch"></a>
+    <div class="h">currently watching</div>
+    <span class="note">// please don't judge</span>
+    <div style="margin-top:10px"><ul class="wl">${wlH||'<li class="note">— nix —</li>'}</ul></div>
+
+    <a id="badges"></a>
+    <div class="h">Badges</div>
+    <span class="note">// 88 × 31 px of sth. </span>
+    <div style="margin-top:10px"><div class="wb-wall" id="wb-wall"><span class="note">— lädt —</span></div></div>
+
+    <footer>idk what to write here · ${new Date().getFullYear()}</footer>
+  `;
+}
+
+/* ── DISCORD (Lanyard + Cache, angelehnt an index.txt) ── */
+const ST_TEXT={online:'Online',idle:'Abwesend',dnd:'Nicht stören',offline:'Offline'};
+
+function applyDiscordStatus(status,username,avatarUrl){
+  const dot=document.getElementById('dc-sdot');
+  if(dot)dot.className='sdot '+status;
+  const st=document.getElementById('dc-stxt');
+  if(st){st.className='dc-stxt '+status;st.textContent=ST_TEXT[status]||'Offline';}
+  if(username){const u=document.getElementById('dc-uname');if(u)u.textContent=username;}
+  // Avatar nur setzen, wenn kein eigenes Profilbild in der Config gesetzt ist
+  if(avatarUrl && !CFG.profilePicture){
+    const pic=document.getElementById('me-pic');
+    const img=document.getElementById('me-img');
+    if(img){img.src=avatarUrl;}
+    else if(pic){
+      const ini=pic.querySelector('#me-ini');if(ini)ini.remove();
+      const newImg=document.createElement('img');
+      newImg.id='me-img';newImg.alt='';newImg.src=avatarUrl;
+      pic.insertBefore(newImg,pic.firstChild);
+    }
+  }
+  CACHE.set('dc',{status,username,avatarUrl});
+}
+
+async function fetchDiscord(){
+  // 1) Cache sofort anzeigen
+  const dc=CACHE.get('dc');
+  if(dc)applyDiscordStatus(dc.status,dc.username,dc.avatarUrl);
+  // 2) Ohne ID: offline + Fallback
+  if(!CFG.discordId){applyDiscordStatus('offline',CFG.discordName,null);return;}
+  // 3) Live abrufen
+  try{
+    const r=await fetch(`https://api.lanyard.rest/v1/users/${CFG.discordId}`);
+    const d=await r.json();
+    if(d.success){
+      const u=d.data.discord_user;
+      const status=d.data.discord_status||'offline';
+      const av=u.avatar?`https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=128`:null;
+      applyDiscordStatus(status,u.username,av);
+      setTimeout(fetchDiscord,30000); // alle 30s aktualisieren
+    }
+  }catch{
+    if(!dc)applyDiscordStatus('offline',CFG.discordName,null);
+  }
+}
+
+async function loadBadges(){
+  let list=[];
+  try{
+    const r=await fetch('./data/badges/badges.json',{cache:'no-cache'});
+    if(r.ok)list=await r.json();
+  }catch(e){}
+  const wall=document.getElementById('wb-wall');
+  if(!wall)return;
+  wall.innerHTML = Array.isArray(list)&&list.length
+    ? list.map(b=>`<a href="${esc(b.url)}" target="_blank" rel="noopener" class="wb"><img src="${esc(b.img)}" alt="${esc(b.alt||'')}" width="88" height="31" loading="lazy"></a>`).join('')
+    : '<span class="note">— noch keine —</span>';
+}
+
+loadConfig().then(render).then(fetchDiscord).then(loadBadges).catch(e=>{
+  document.getElementById('app').innerHTML='<span class="err">// hoppla, config kaputt</span>';
+  console.error(e);
+});
+</script>
+</body>
+</html>
+                    

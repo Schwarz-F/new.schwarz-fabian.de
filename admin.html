@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FA|BIAN .ADMIN // Control Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+/* ══ THEME VARS ══════════════════════════════════════════════════ */
+:root,[data-theme="dark"]{
+--bg:#06090f;--panel:#0b1220;--card:#10192c;--lift:#162238;
+--acc:#e8923a;--acc-dim:rgba(232,146,58,.12);--acc-b:rgba(232,146,58,.35);--acc-glow:rgba(232,146,58,.4);
+--sec:#3dd4c4;--sec-dim:rgba(61,212,196,.12);--sec-b:rgba(61,212,196,.35);
+--t1:#ddeaf2;--t2:#627e92;--t3:#2c4255;--t4:#182433;
+--brd:rgba(220,234,242,.07);--hex:rgba(232,146,58,.055);
+--win-tex:none;--desktop-bg:var(--bg);
+--taskbar-bg:rgba(0,0,0,.88);--ck-display:block;--stripe-anim:none;
+--bo:#e8923a;--bo-bg:rgba(232,146,58,.12);--bo-b:rgba(232,146,58,.35);
+--bc:#3dd4c4;--bc-bg:rgba(61,212,196,.12);--bc-b:rgba(61,212,196,.35);
+--bg2:#43b581;--bg2-bg:rgba(67,181,129,.12);--bg2-b:rgba(67,181,129,.35);
+--bp:#9b59b6;--bp-bg:rgba(155,89,182,.12);--bp-b:rgba(155,89,182,.35);
+--br:#f04747;--br-bg:rgba(240,71,71,.12);--br-b:rgba(240,71,71,.35);
+--by:#f0c040;--by-bg:rgba(240,192,64,.12);--by-b:rgba(240,192,64,.35);
+}
+[data-theme="gold"]{
+--bg:#141210;--panel:#1e1b18;--card:#282520;--lift:#323028;
+--acc:#c89830;--acc-dim:rgba(200,152,48,.14);--acc-b:rgba(200,152,48,.4);--acc-glow:rgba(200,152,48,.4);
+--sec:#b8a040;--sec-dim:rgba(184,160,64,.14);--sec-b:rgba(184,160,64,.4);
+--t1:#ece4c4;--t2:#8a7a52;--t3:#4a3e22;--t4:#2e2614;
+--brd:rgba(236,228,196,.07);--hex:rgba(200,152,48,.06);
+--win-tex:none;--desktop-bg:var(--bg);
+--bo:#c89830;--bo-bg:rgba(200,152,48,.14);--bo-b:rgba(200,152,48,.4);
+--bc:#b8a040;--bc-bg:rgba(184,160,64,.14);--bc-b:rgba(184,160,64,.4);
+--bg2:#5cb87a;--bg2-bg:rgba(92,184,122,.14);--bg2-b:rgba(92,184,122,.4);
+--bp:#c880d0;--bp-bg:rgba(200,128,208,.14);--bp-b:rgba(200,128,208,.4);
+--br:#e85050;--br-bg:rgba(232,80,80,.14);--br-b:rgba(232,80,80,.4);
+--by:#e0c840;--by-bg:rgba(224,200,64,.14);--by-b:rgba(224,200,64,.4);
+}
+[data-theme="yellow"]{
+--bg:#42434a;--panel:#38393e;--card:#3d3e44;--lift:#48494f;
+--acc:#FFFA00;--acc-dim:rgba(255,250,0,.10);--acc-b:rgba(255,250,0,.45);--acc-glow:rgba(255,250,0,.45);
+--sec:#C7C8C2;--sec-dim:rgba(199,200,194,.12);--sec-b:rgba(199,200,194,.4);
+--t1:#eeeee8;--t2:#aaaa9e;--t3:#626258;--t4:#3e3e3a;
+--brd:rgba(238,238,232,.07);--hex:rgba(255,250,0,.07);
+--win-tex:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(0,0,0,.025) 3px,rgba(0,0,0,.025) 4px);
+--desktop-bg:linear-gradient(155deg,#C7C8C2 0%,#888882 45%,#535353 100%);
+--bo:#FFFA00;--bo-bg:rgba(255,250,0,.10);--bo-b:rgba(255,250,0,.45);
+--bc:#C7C8C2;--bc-bg:rgba(199,200,194,.12);--bc-b:rgba(199,200,194,.4);
+--bg2:#60c878;--bg2-bg:rgba(96,200,120,.12);--bg2-b:rgba(96,200,120,.4);
+--bp:#d090e0;--bp-bg:rgba(208,144,224,.12);--bp-b:rgba(208,144,224,.4);
+--br:#f05858;--br-bg:rgba(240,88,88,.12);--br-b:rgba(240,88,88,.4);
+--by:#ffe040;--by-bg:rgba(255,224,64,.12);--by-b:rgba(255,224,64,.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--t1);font-family:'Barlow Condensed',sans-serif;font-size:15px;transition:background .4s,color .4s}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104'%3E%3Cpath d='M30 2L58 18v36L30 70 2 54V18z' fill='none' stroke='rgba(232,146,58,0.04)' stroke-width='1'/%3E%3C/svg%3E")}
+
+/* LOGIN */
+#login{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.login-card{width:340px;background:var(--panel);border:1px solid var(--acc-b);padding:36px 32px;position:relative;
+clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+.lc-tl,.lc-br{position:absolute;width:14px;height:14px}
+.lc-tl{top:0;left:0;border-top:2px solid var(--acc);border-left:2px solid var(--acc)}
+.lc-br{bottom:0;right:0;border-bottom:2px solid var(--acc);border-right:2px solid var(--acc)}
+.login-logo{font-size:30px;font-weight:800;letter-spacing:6px;color:var(--t1);text-align:center;margin-bottom:4px}
+.login-logo b{color:var(--acc)}.login-logo span{color:var(--t3)}
+.login-sub{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--t2);text-align:center;margin-bottom:24px}
+.login-err{font-family:'Share Tech Mono',monospace;font-size:11px;color:#f04747;text-align:center;margin-top:8px;min-height:16px}
+
+/* LAYOUT */
+#portal{display:none;height:100%;position:relative;z-index:1}
+#sidebar{width:256px;height:100%;background:var(--card);border-right:1px solid var(--acc-b);
+display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:10;overflow-y:auto}
+#content-wrap{margin-left:256px;height:100%;overflow-y:auto;padding:26px}
+#content-wrap::-webkit-scrollbar{width:5px}
+#content-wrap::-webkit-scrollbar-thumb{background:var(--t4)}
+
+/* SIDEBAR */
+.sb-logo{padding:20px 18px 14px;border-bottom:1px solid var(--brd)}
+.sb-title{font-size:20px;font-weight:800;letter-spacing:4px;color:var(--t1)}
+.sb-title b{color:var(--acc)}.sb-title span{color:var(--t3);font-size:13px;letter-spacing:2px}
+.sb-ver{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--t3);margin-top:3px}
+.sb-nav{padding:8px 0;flex:1}
+.nav-item{width:100%;display:flex;align-items:center;gap:10px;padding:9px 18px;background:transparent;border:none;
+color:var(--t2);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;
+text-transform:uppercase;cursor:pointer;text-align:left;transition:all .15s}
+.nav-item:hover{background:var(--acc-dim);color:var(--t1)}
+.nav-item.on{background:var(--acc-dim);color:var(--acc);border-left:2px solid var(--acc)}
+.ni-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0}
+.sb-foot{padding:12px 14px;border-top:1px solid var(--brd)}
+.save-stat{display:flex;align-items:center;gap:7px;margin-bottom:8px;
+font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.5px}
+.ss-dot{width:7px;height:7px;border-radius:50%}
+.ss-dot.saved{background:#43b581}.ss-dot.dirty{background:var(--acc)}
+.ss-txt.saved{color:#43b581}.ss-txt.dirty{color:var(--acc)}
+
+/* CONTENT HEADER */
+.content-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;
+padding-bottom:12px;border-bottom:1px solid var(--acc-b)}
+.ch-title{font-size:22px;font-weight:800;letter-spacing:3px;color:var(--t1);text-transform:uppercase}
+.ch-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:2px;margin-top:2px}
+
+/* CARDS */
+.card{background:var(--panel);border:1px solid var(--brd);margin-bottom:14px;position:relative}
+.card::before,.card::after{content:'';position:absolute;width:10px;height:10px;pointer-events:none}
+.card::before{top:0;right:0;border-top:2px solid var(--acc);border-right:2px solid var(--acc)}
+.card::after{bottom:0;left:0;border-bottom:2px solid var(--acc);border-left:2px solid var(--acc)}
+.card-hdr{background:var(--card);border-bottom:1px solid var(--acc-b);padding:9px 14px;display:flex;align-items:center;gap:8px}
+.card-hdr-title{font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--acc);text-transform:uppercase;flex:1}
+.card-body{padding:16px 14px}
+
+/* FORMS */
+.fg{margin-bottom:13px}
+.fl{display:block;font-size:9px;font-weight:700;letter-spacing:2.5px;color:var(--acc);text-transform:uppercase;
+font-family:'Share Tech Mono',monospace;margin-bottom:4px}
+.fi,.fsel,.fta{width:100%;background:rgba(6,9,15,.7);border:1px solid var(--t4);border-bottom:1px solid var(--acc-b);
+color:var(--t1);font-family:'Barlow Condensed',sans-serif;font-size:15px;padding:7px 11px;outline:none;
+transition:border-color .2s,box-shadow .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%)}
+.fi:focus,.fsel:focus,.fta:focus{border-color:var(--acc);box-shadow:0 0 10px rgba(232,146,58,.12)}
+.fi::placeholder,.fta::placeholder{color:var(--t3)}
+.fsel{cursor:pointer}.fsel option{background:var(--card)}
+.fta{resize:vertical;min-height:75px}
+.fgrid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fgrid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.fhint{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--t3);margin-top:3px;letter-spacing:.5px;line-height:1.5}
+.fcheck{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;color:var(--t1);letter-spacing:.5px}
+.fcheck input{accent-color:var(--acc);width:14px;height:14px;cursor:pointer}
+
+/* BUTTONS */
+.btn{background:var(--acc-dim);border:1px solid var(--acc-b);color:var(--acc);
+font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;
+text-transform:uppercase;padding:7px 16px;cursor:pointer;
+clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px));
+transition:background .15s,color .15s}
+.btn:hover{background:var(--acc);color:var(--bg)}
+.btn.sm{font-size:11px;padding:4px 10px;letter-spacing:2px}
+.btn.pri{background:var(--acc);color:var(--bg)}.btn.pri:hover{opacity:.85}
+.btn.ghost{background:transparent;border-color:var(--brd);color:var(--t2)}
+.btn.ghost:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-dim)}
+.btn.danger{border-color:rgba(240,71,71,.4);color:#f04747;background:rgba(240,71,71,.08)}
+.btn.danger:hover{background:#f04747;color:#fff}
+.btn.full{width:100%;clip-path:none;margin-bottom:6px}
+.btn.export{background:var(--acc);color:var(--bg);width:100%;
+clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.btn.export:hover{opacity:.85}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+
+/* BADGE MANAGER */
+.badge-list{display:flex;flex-wrap:wrap;gap:5px;min-height:30px;background:rgba(6,9,15,.4);
+border:1px solid var(--brd);padding:7px;margin-bottom:8px}
+.badge-chip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;
+letter-spacing:2px;text-transform:uppercase;padding:3px 8px;
+clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%)}
+.badge-chip.o{background:var(--bo-bg);border:1px solid var(--bo-b);color:var(--bo)}
+.badge-chip.c{background:var(--bc-bg);border:1px solid var(--bc-b);color:var(--bc)}
+.badge-chip.g{background:var(--bg2-bg);border:1px solid var(--bg2-b);color:var(--bg2)}
+.badge-chip.p{background:var(--bp-bg);border:1px solid var(--bp-b);color:var(--bp)}
+.badge-chip.r{background:var(--br-bg);border:1px solid var(--br-b);color:var(--br)}
+.badge-chip.y{background:var(--by-bg);border:1px solid var(--by-b);color:var(--by)}
+.badge-chip button{background:none;border:none;color:inherit;cursor:pointer;
+font-size:13px;padding:0 0 0 2px;opacity:.7}.badge-chip button:hover{opacity:1}
+.badge-add-row{display:flex;gap:7px;align-items:center}
+.badge-add-row .fi{flex:1}.badge-add-row .fsel{width:90px}
+
+/* LIST CARDS */
+.list-card{background:var(--card);border:1px solid var(--brd);margin-bottom:9px}
+.list-card-hdr{display:flex;align-items:center;gap:10px;padding:9px 12px}
+.lc-icon{width:28px;height:28px;background:var(--lift);border:1px solid var(--acc-b);
+clip-path:polygon(0 0,calc(100% - 5px) 0,100% 5px,100% 100%,5px 100%,0 calc(100% - 5px));
+display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--acc);flex-shrink:0}
+.lc-info{flex:1;min-width:0}
+.lc-title{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t1)}
+.lc-sub{font-size:11px;color:var(--t2);letter-spacing:.5px}
+.lc-code{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--t3);flex-shrink:0}
+.lc-acts{display:flex;gap:5px;flex-shrink:0}
+.list-card-body{padding:12px 14px;border-top:1px solid var(--brd);display:none}
+.list-card-body.open{display:block}
+.lc-sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.wl-watching2{background:var(--sec)}.wl-completed2{background:var(--acc)}
+.wl-planning2{background:var(--t2)}.wl-dropped2{background:#f04747}
+/* SORT ARROWS (Operations + Watchlist) */
+.sort-arrows{display:flex;flex-direction:column;gap:1px;flex-shrink:0}
+.sort-arrows button{background:var(--lift);border:1px solid var(--brd);color:var(--t2);
+font-size:9px;line-height:1;width:20px;height:15px;cursor:pointer;padding:0;transition:all .12s}
+.sort-arrows button:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-dim)}
+.sort-arrows button:disabled{opacity:.25;cursor:default}
+
+/* META ROW */
+.meta-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+
+/* APPS & LAYOUT (Sichtbarkeit) */
+.app-row{display:flex;gap:12px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--brd);flex-wrap:wrap}
+.app-row:last-child{border-bottom:none}
+.app-row strong{flex:1;min-width:120px;font-size:13px;letter-spacing:1px;color:var(--t1)}
+.app-row .fcheck{flex-shrink:0;font-size:12px}
+.app-row .fi{width:78px;clip-path:none;flex-shrink:0;padding:4px 8px;font-size:13px}
+
+/* THEME EDITOR */
+.ct-block{margin-bottom:12px;padding:12px;background:var(--card);border:1px solid var(--brd)}
+.ct-swatch{width:22px;height:22px;border:1px solid var(--brd);flex-shrink:0}
+.ct-var-row{display:flex;align-items:center;gap:6px}
+.ct-var-row .fl{margin-bottom:0;width:78px;flex-shrink:0}
+
+/* DASHBOARD */
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat-card{background:var(--panel);border:1px solid var(--brd);border-top:2px solid var(--acc);
+padding:12px 14px;clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,0 100%)}
+.sc-val{font-size:26px;font-weight:800;color:var(--t1)}
+.sc-lbl{font-size:9px;letter-spacing:2px;color:var(--t3);text-transform:uppercase;
+font-family:'Share Tech Mono',monospace;margin-top:2px}
+.dash-info{background:var(--panel);border:1px solid var(--brd);border-left:3px solid var(--acc);
+padding:12px 14px;font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:14px}
+.dash-info span{color:var(--acc)}
+
+/* BACKGROUND GALLERY */
+.bg-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin:10px 0}
+.bg-thumb{aspect-ratio:16/9;overflow:hidden;border:2px solid transparent;transition:border-color .15s;
+position:relative;cursor:pointer}
+.bg-thumb:hover{border-color:var(--acc-b)}.bg-thumb.on{border-color:var(--acc)}
+.bt-del{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.75);border:none;
+color:#ff5252;font-size:13px;cursor:pointer;width:20px;height:20px;
+display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;z-index:2}
+.bg-thumb:hover .bt-del{opacity:1}
+
+/* API BADGE */
+.api-badge{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1.5px;
+padding:4px 10px;border:1px solid;display:inline-flex;align-items:center;gap:5px;flex-shrink:0}
+.api-badge.ok{border-color:rgba(67,181,129,.4);color:#43b581;background:rgba(67,181,129,.08)}
+.api-badge.off{border-color:rgba(240,71,71,.4);color:#f04747;background:rgba(240,71,71,.08)}
+
+/* NOTIFICATIONS */
+.notif{position:fixed;top:20px;right:20px;z-index:9999;background:var(--card);
+border:1px solid var(--acc-b);padding:11px 16px;font-family:'Share Tech Mono',monospace;
+font-size:11px;letter-spacing:1px;max-width:320px;
+clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+transform:translateX(120%);transition:transform .3s;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.notif.show{transform:translateX(0)}
+.notif.ok{border-color:#43b581;color:#43b581}
+.notif.err{border-color:#f04747;color:#f04747}
+.notif.warn{border-color:var(--acc);color:var(--acc)}
+
+/* DIVIDER */
+.dv{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:2.5px;color:var(--t3);
+font-family:'Share Tech Mono',monospace;margin:8px 0 14px}
+.dv::before,.dv::after{content:'';flex:1;height:1px;background:var(--brd)}
+
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-card">
+    <div class="lc-tl"></div>
+    <div class="lc-br"></div>
+    <div class="login-logo">FA<b>B</b>IAN<span> .ADMIN</span></div>
+    <div class="login-sub">SYSTEM ACCESS // AUTHENTICATE</div>
+    <div class="fg">
+      <label class="fl">Password</label>
+      <input type="password" class="fi" id="pw-inp" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="btn pri full" onclick="doLogin()">ENTER SYSTEM ▶</button>
+    <div class="login-err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- PORTAL -->
+<div id="portal">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-title">FA<b>B</b>IAN<span> .ADMIN</span></div>
+      <div class="sb-ver">ENDFIELD OS // CONTROL PANEL v3</div>
+    </div>
+    <nav class="sb-nav" id="sb-nav"></nav>
+    <div class="sb-foot">
+      <div class="save-stat">
+        <div class="ss-dot saved" id="ss-dot"></div>
+        <span class="ss-txt saved" id="ss-txt">Gespeichert</span>
+      </div>
+      <button class="btn export" onclick="exportHTML()">▶ &nbsp;Export index.html</button>
+      <button class="btn ghost full" onclick="openPreview()">⊙ &nbsp;Vorschau öffnen</button>
+      <button class="btn ghost full" style="margin-bottom:0" onclick="doLogout()">⎋ &nbsp;Abmelden</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="content-wrap">
+    <div id="content-area">
+      <!-- filled dynamically by showSection() -->
+    </div>
+  </div>
+
+</div><!-- /portal -->
+
+<script>
+const el=id=>document.getElementById(id); 
+/* ══ LOGIN ══════════════════════════════════════════════════ */
+const _PW_KEY='fos_pw';
+function getStoredPw(){return localStorage.getItem(_PW_KEY)||'admin';}
+function doLogin(){
+  const pw=document.getElementById('pw-inp').value;
+  if(pw===getStoredPw()){startPortal();}
+  else{document.getElementById('login-err').textContent='// WRONG PASSWORD';}
+}
+document.getElementById('pw-inp').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+function doLogout(){
+  sessionStorage.removeItem('fos_auth');
+  document.getElementById('portal').style.display='none';
+  document.getElementById('login').style.display='flex';
+  document.getElementById('pw-inp').value='';
+  document.getElementById('login-err').textContent='';
+}
+
+/* ══ API / STORAGE ══════════════════════════════════════════ */
+let API=false;
+async function ping(){
+  try{const r=await fetch('./api.php?action=ping',{signal:AbortSignal.timeout(2000)});API=r.ok;}
+  catch{API=false;}
+  const b=el('api-badge');
+  if(b){b.className='api-badge '+(API?'ok':'off');b.textContent=API?'● API verbunden':'● Kein Server (localStorage)';}
+}
+async function loadConfig(){
+  if(API){try{const r=await fetch('./api.php?action=read_config');if(r.ok)return await r.json();}catch{}}
+  try{return JSON.parse(localStorage.getItem('fos_cfg')||'{}');}catch{return {};}
+}
+async function saveConfig(obj){
+  if(API){try{
+    await fetch('./api.php?action=write_config',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)});
+    return true;
+  }catch{}}
+  localStorage.setItem('fos_cfg',JSON.stringify(obj));return true;
+}
+async function writeDefault(obj){
+  if(API){try{
+    await fetch('./api.php?action=write_default',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)});
+  }catch{}}
+}
+
+
+/* ══ DEFAULTS ═══════════════════════════════════════════════ */
+const DEFS={
+  operatorName:'FABIAN',operatorRole:'Fachinformatiker für Systemintegration',profilePicture:null,
+  profileMeta:[{label:'Location',value:'Erkelenz, NRW',hl:false},{label:'Status',value:'ACTIVE',hl:true},{label:'Ausbildung',value:'Jahr 1 / 3',hl:false}],
+  stats:[{label:'Ausbildungsjahr',value:'01'},{label:'Abschluss',value:'2028'},{label:'Standort',value:'NRW'}],
+  profileBadges:[{l:'IGEL OS',t:'o'},{l:'Citrix CVAD',t:'o'},{l:'Windows',t:'o'},{l:'Fotografie',t:'c'},{l:'Python',t:'c'},{l:'JavaScript',t:'c'}],
+  discordId:'',discordName:'dein_name',discordUrl:'https://discord.com/users/DEINE_ID',
+  aboutHtml:'Azubi als <span>Fachinformatiker für Systemintegration</span> aus dem Raum Erkelenz, NRW.',
+  intelBadges:[{l:'Thin Clients',t:'o'},{l:'Netzwerktechnik',t:'o'},{l:'SMB/AD',t:'o'},{l:'JavaScript',t:'c'},{l:'Fotografie',t:'c'},{l:'Techwear',t:'c'}],
+  links:[
+    {code:'OP-01',title:'GitHub',   sub:'Code-Repositories',   url:'https://github.com/',   icon:'github',  dcStatus:false},
+    {code:'OP-02',title:'LinkedIn', sub:'Berufliches Netzwerk',url:'https://linkedin.com/', icon:'linkedin',dcStatus:false},
+    {code:'OP-03',title:'Instagram',sub:'Fotografie',          url:'https://instagram.com/',icon:'instagram',dcStatus:false},
+    {code:'OP-04',title:'Discord',  sub:'Chat & Community',    url:'https://discord.com/', icon:'discord', dcStatus:true},
+    {code:'OP-05',title:'E-Mail',   sub:'Direkt kontaktieren', url:'mailto:deine@email.de',icon:'email',   dcStatus:false}
+  ],
+  watchlist:[
+    {title:'Attack on Titan',type:'Anime',status:'completed',ep:'87/87'},
+    {title:'Frieren',type:'Anime',status:'watching',ep:'28/→'},
+    {title:'Mr. Robot',type:'Serie',status:'completed',ep:'45/45'},
+    {title:'Dark',type:'Serie',status:'completed',ep:'26/26'}
+  ],
+  customWindows:[],recycleBin:[],
+  autostart:['profile','intel','links'],
+  autostartPos:{profile:{x:86,y:28,w:490},intel:{x:600,y:28,w:460},links:{x:1100,y:28,w:440},watch:{x:86,y:320,w:520},fileexplorer:{x:300,y:80,w:560},settings:{x:400,y:130,w:360},recyclebin:{x:240,y:170,w:380},texteditor:{x:200,y:100,w:500}},
+  theme:'dark',bgImage:null,bgImageDefault:null,
+  loadingDuration:2800,loadingText:'INITIALIZING DESKTOP',hiddenFolders:[],
+  /* ── NEUE FELDER ── */
+  osName:'FA|BIAN', osSub:'ENDFIELD OS // v3.0', osHighlight:'B', themeBg:{},
+  intelTitles:{background:'BACKGROUND',specializations:'SPECIALIZATIONS'},
+  loadingEnabled:true,
+  customThemes:[],
+  appVisibility:{},
+  desktopIconPos:{},
+  windowLayers:{},
+  frameless:{},
+  fixedPos:{},
+  profileLayout:['avatar','badges','text','stats'],
+  intelLayout:['text','badges'],
+  nameSize:{first:38,last:38},
+  clippy:{enabled:false,images:[],minSec:45,maxSec:120},
+  clippys:[]
+};
+let cfg={},dirty=false,currentSection='dashboard';
+function loadCfg(c){
+  cfg={...JSON.parse(JSON.stringify(DEFS)),...c};
+  ['profileMeta','stats','profileBadges','intelBadges','links','watchlist','customWindows','recycleBin','hiddenFolders','customThemes','profileLayout','intelLayout'].forEach(k=>{if(!Array.isArray(cfg[k]))cfg[k]=JSON.parse(JSON.stringify(DEFS[k]||[]));});
+  // Objekt-Defaults absichern
+  ['appVisibility','desktopIconPos','windowLayers','frameless','fixedPos','clippy','themeBg','intelTitles'].forEach(k=>{if(!cfg[k]||typeof cfg[k]!=='object'||Array.isArray(cfg[k]))cfg[k]=JSON.parse(JSON.stringify(DEFS[k]));});
+  if(!Array.isArray(cfg.clippys))cfg.clippys=[];
+  // Migration: altes Einzel-clippy in Array überführen
+  if((!cfg.clippys.length)&&cfg.clippy&&(cfg.clippy.images||[]).length){
+    cfg.clippys.push({id:'cl'+Date.now(),enabled:!!cfg.clippy.enabled,name:'Clippy 1',
+      images:cfg.clippy.images||[],minSec:cfg.clippy.minSec||45,maxSec:cfg.clippy.maxSec||120});
+}
+  if(!cfg.autostartPos)cfg.autostartPos=JSON.parse(JSON.stringify(DEFS.autostartPos));
+  Object.keys(DEFS.autostartPos).forEach(k=>{if(!cfg.autostartPos[k])cfg.autostartPos[k]=DEFS.autostartPos[k];});
+}
+async function saveCfg(){await saveConfig(cfg);dirty=false;updateSS();notify('Gespeichert!','ok');}
+function markDirty(){dirty=true;updateSS();}
+function updateSS(){const d=el('ss-dot'),t=el('ss-txt');if(!d)return;
+  d.className='ss-dot '+(dirty?'dirty':'saved');t.className='ss-txt '+(dirty?'dirty':'saved');
+  t.textContent=dirty?'Ungespeichert':'Gespeichert';}
+
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function notify(msg,type='ok'){const n=document.createElement('div');n.className=`notif ${type}`;n.textContent=msg;
+  document.body.appendChild(n);setTimeout(()=>n.classList.add('show'),10);
+  setTimeout(()=>{n.classList.remove('show');setTimeout(()=>n.remove(),300);},3500);}
+
+/* ══ NAV (mit neuen Einträgen: Apps & Layout, Clippy) ═══════ */
+const NAV=[
+  {id:'dashboard',    icon:'◆',label:'Dashboard'},
+  {id:'profile',      icon:'◈',label:'Operator Profile'},
+  {id:'discord',      icon:'⬡',label:'Discord'},
+  {id:'intel',        icon:'◉',label:'Intel File'},
+  {id:'links',        icon:'▷',label:'Operations'},
+  {id:'watchlist',    icon:'◇',label:'Watch List'},
+  {id:'customwindows',icon:'⊞',label:'Custom Windows'},
+  {id:'apps',         icon:'▦',label:'Apps & Layout'},
+  {id:'recyclebin',   icon:'⌦',label:'Papierkorb'},
+  {id:'filesystem',   icon:'▤',label:'File Explorer'},
+  {id:'appearance',   icon:'◑',label:'Appearance'},
+  {id:'autostart',    icon:'▶',label:'Autostart'},
+  {id:'loading',      icon:'◷',label:'Ladescreen'},
+  {id:'clippy',       icon:'❖',label:'Clippy'},
+  {id:'security',     icon:'⊟',label:'Security'},
+];
+function buildNav(){el('sb-nav').innerHTML=NAV.map(n=>`<button class="nav-item${n.id==='dashboard'?' on':''}" data-id="${n.id}" onclick="showSection('${n.id}')"><span class="ni-icon">${n.icon}</span>${n.label}</button>`).join('');}
+function showSection(id){currentSection=id;document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('on',b.dataset.id===id));el('content-area').innerHTML='<div style="padding:20px;color:var(--t3);font-family:\'Share Tech Mono\',monospace;font-size:11px">Lädt...</div>';setTimeout(()=>el('content-area').innerHTML=RENDERS[id]?.()??'',10);}
+
+/* ══ BADGE MANAGER ══════════════════════════════════════════ */
+const BCOLORS=['o','c','g','p','r','y'];
+const BNAMES={o:'Orange',c:'Cyan',g:'Grün',p:'Lila',r:'Rot',y:'Gold'};
+function badgeMgrHTML(sec,badges){return `
+  <div class="badge-list" id="bl-${sec}">${(badges||[]).map((b,i)=>`<span class="badge-chip ${b.t}">${esc(b.l)}<button onclick="removeBadge('${sec}',${i})">×</button></span>`).join('')}</div>
+  <div class="badge-add-row">
+    <input class="fi" id="bi-${sec}" placeholder="Badge-Name" style="clip-path:none">
+    <select class="fsel" id="bt-${sec}" style="clip-path:none;width:90px">${BCOLORS.map(c=>`<option value="${c}">${BNAMES[c]}</option>`).join('')}</select>
+    <button class="btn sm" onclick="addBadge('${sec}')">+&nbsp;Add</button>
+  </div>`;}
+function addBadge(sec){const v=(el(`bi-${sec}`)?.value||'').trim();if(!v)return;
+  (sec==='profile'?cfg.profileBadges:cfg.intelBadges).push({l:v,t:el(`bt-${sec}`)?.value||'o'});
+  el(`bi-${sec}`).value='';markDirty();showSection(currentSection);}
+function removeBadge(sec,i){(sec==='profile'?cfg.profileBadges:cfg.intelBadges).splice(i,1);markDirty();showSection(currentSection);}
+
+/* ══ GENERISCHER BILD-PICKER ════════════════════════════════ */
+async function pickImage(folder, callback){
+  if(!API){
+    // Fallback ohne Server: Datei-Dialog → Data-URL
+    const inp=document.createElement('input');inp.type='file';inp.accept='image/*';
+    inp.onchange=()=>{const f=inp.files[0];if(!f)return;const r=new FileReader();
+      r.onload=e=>callback(e.target.result);r.readAsDataURL(f);};
+    inp.click();return;
+  }
+  // Modal mit Galerie + Upload
+  const ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:30000;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center';
+  ov.innerHTML=`<div style="background:var(--panel);border:1px solid var(--acc-b);width:560px;max-width:92vw;max-height:80vh;display:flex;flex-direction:column">
+    <div class="card-hdr"><span class="card-hdr-title">Bild auswählen — ${esc(folder)}</span>
+      <button class="btn sm ghost" id="pi-close" style="margin-left:auto">×</button></div>
+    <div class="card-body" style="overflow:auto">
+      <div class="btn-row" style="margin-bottom:10px">
+        <button class="btn sm" id="pi-up">Neues Bild hochladen</button>
+        <input type="file" id="pi-file" accept="image/jpeg,image/png" style="display:none">
+      </div>
+      <div class="bg-gallery" id="pi-gallery"><div class="fhint">Lädt...</div></div>
+    </div></div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove();
+  ov.addEventListener('click',e=>{if(e.target===ov)close();});
+  el('pi-close').onclick=close;
+  el('pi-up').onclick=()=>el('pi-file').click();
+  el('pi-file').onchange=async()=>{
+    const f=el('pi-file').files[0];if(!f)return;
+    const fd=new FormData();fd.append('action','upload_file');fd.append('file',f);fd.append('folder',folder);
+    try{const r=await fetch('./api.php',{method:'POST',body:fd});const d=await r.json();
+      if(d.url){callback(d.url);close();}else notify(d.error||'Upload-Fehler','err');
+    }catch{notify('Upload fehlgeschlagen','err');}
+  };
+  // Galerie laden
+  try{
+    const r=await fetch('./api.php?action=list_folder&folder='+encodeURIComponent(folder));
+    const data=r.ok?await r.json():{files:[]};
+    const imgs=(data.files||[]).filter(f=>f.ext==='jpg'||f.ext==='png');
+    const g=el('pi-gallery');
+    g.innerHTML=imgs.length?imgs.map(f=>`
+      <div class="bg-thumb" style="background-image:url(${f.url});background-size:cover;background-position:center"
+           onclick="(window._piPick&&window._piPick('${f.url}'))"></div>`).join('')
+      :'<div class="fhint">Noch keine Bilder in diesem Ordner</div>';
+    window._piPick=(url)=>{callback(url);close();delete window._piPick;};
+  }catch{el('pi-gallery').innerHTML='<div class="fhint">Fehler beim Laden</div>';}
+}
+
+/* ══ RENDERS — Teil A ═══════════════════════════════════════ */
+const RENDERS={
+
+dashboard:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Dashboard</div><div class="ch-sub">SYSTEM OVERVIEW</div></div>
+    <div id="api-badge" class="api-badge ${API?'ok':'off'}">${API?'● API verbunden':'● Kein Server (localStorage)'}</div>
+  </div>
+  <div class="dash-grid">
+    <div class="stat-card"><div class="sc-val">${cfg.links.length}</div><div class="sc-lbl">Links</div></div>
+    <div class="stat-card"><div class="sc-val">${cfg.watchlist.length}</div><div class="sc-lbl">Watch List</div></div>
+    <div class="stat-card"><div class="sc-val">${cfg.customWindows.length}</div><div class="sc-lbl">Custom Windows</div></div>
+  </div>
+  <div class="dash-info">
+    <span>Workflow:</span> Änderungen werden ${API?'im Server (<code>data/config.json</code>)':'im localStorage (kein Server)'} gespeichert.<br>
+    <span>Export:</span> "Export index.html" patcht die Hauptdatei mit der aktuellen Config.<br>
+    ${!API?'<span style="color:#f04747">⚠ api.php nicht erreichbar</span> — ohne PHP-Server werden Änderungen nur lokal gespeichert.':''}
+  </div>
+  <div class="btn-row">
+    <button class="btn pri" onclick="exportHTML()">▶ Export index.html</button>
+    <button class="btn" onclick="openPreview()">⊙ Vorschau</button>
+    <button class="btn ghost" onclick="resetDefaults()">↺ Zurücksetzen</button>
+  </div>`,
+
+profile:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Operator Profile</div><div class="ch-sub">IDENTITY DATA</div></div>
+    <button class="btn sm pri" onclick="saveProfile()">Speichern</button></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Profilbild</span></div><div class="card-body">
+    <div style="display:flex;align-items:center;gap:14px">
+    ${cfg.profilePicture
+      ?`<img src="${cfg.profilePicture}" style="width:80px;height:80px;object-fit:cover;border:1px solid var(--acc-b);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))">`
+      :`<div style="width:80px;height:80px;background:var(--lift);border:1px solid var(--acc-b);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--acc)">${cfg.operatorName.substring(0,2).toUpperCase()}</div>`}
+      <div>
+        <button class="btn sm" onclick="uploadPic()">Bild auswählen</button>
+        ${cfg.profilePicture?`<button class="btn sm danger" onclick="cfg.profilePicture=null;markDirty();showSection('profile')" style="margin-left:6px">Entfernen</button>`:''}
+        <input type="file" id="pic-inp" accept="image/*" style="display:none" onchange="uploadPic(this)">
+        <div class="fhint" style="margin-top:6px">// JPEG/PNG/WebP · empfohlen: 256×256px</div>
+      </div>
+    </div>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Basis-Daten</span></div><div class="card-body">
+    <div class="fgrid2">
+      <div class="fg"><label class="fl">Name (Vor- + Nachname)</label><input class="fi" id="p-name" value="${esc(cfg.operatorName)}"></div>
+      <div class="fg"><label class="fl">Rolle / Klassifizierung</label><input class="fi" id="p-role" value="${esc(cfg.operatorRole)}"></div>
+    </div>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Name-Größe &amp; Layout</span></div><div class="card-body">
+    <div class="fgrid2">
+      <div class="fg"><label class="fl">Vorname Größe (px)</label><input class="fi" id="ns-first" type="number" value="${cfg.nameSize?.first||38}"></div>
+      <div class="fg"><label class="fl">Nachname Größe (px)</label><input class="fi" id="ns-last" type="number" value="${cfg.nameSize?.last||38}"></div>
+    </div>
+    <div class="fg"><label class="fl">Ebenen-Reihenfolge (Komma)</label>
+      <input class="fi" id="p-layout" value="${esc((cfg.profileLayout||['avatar','badges','text','stats']).join(','))}">
+      <div class="fhint">// Mögliche Werte: avatar, text, badges, stats · avatar+text bilden die obere Zeile</div></div>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Meta-Felder</span>
+    <button class="btn sm ghost" onclick="addMeta()" style="margin-left:auto">+ Feld</button></div>
+    <div class="card-body"><div id="meta-fields">${metaFieldsHTML()}</div>
+    <div class="fhint">// "Aktiv" = cyan hervorgehoben + ● Präfix</div></div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Stat-Boxen</span>
+    <button class="btn sm ghost" onclick="addStat()" style="margin-left:auto">+ Box</button>
+    <button class="btn sm danger" onclick="removeStat()" style="margin-left:4px">- Box</button></div>
+    <div class="card-body">${cfg.stats.map((s,i)=>`<div class="fgrid2" style="margin-bottom:10px">
+      <div class="fg"><label class="fl">Label ${i+1}</label><input class="fi" id="sl-${i}" value="${esc(s.label)}"></div>
+      <div class="fg"><label class="fl">Wert ${i+1}</label><input class="fi" id="sv-${i}" value="${esc(s.value)}"></div>
+    </div>`).join('')}</div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Profil-Badges</span></div>
+    <div class="card-body">${badgeMgrHTML('profile',cfg.profileBadges)}</div></div>`,
+
+discord:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Discord</div><div class="ch-sub">LANYARD API</div></div>
+    <button class="btn sm pri" onclick="saveDiscord()">Speichern</button></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Einstellungen</span></div><div class="card-body">
+    <div class="fg"><label class="fl">Discord User ID</label>
+      <input class="fi" id="dc-id" value="${esc(cfg.discordId)}" placeholder="z.B. 123456789012345678">
+      <div class="fhint">// Discord → Einstellungen → Erweitert → Entwicklermodus → Rechtsklick auf Profil → ID kopieren</div></div>
+    <div class="fg"><label class="fl">Fallback Username</label><input class="fi" id="dc-name" value="${esc(cfg.discordName)}"></div>
+    <div class="fg"><label class="fl">Profil-/Freundeslink (jeder Discord-Text verlinkt hierauf)</label><input class="fi" id="dc-url" value="${esc(cfg.discordUrl)}"></div>
+  </div></div>`,
+
+intel:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Intel File</div><div class="ch-sub">ABOUT TEXT</div></div>
+    <button class="btn sm pri" onclick="saveIntel()">Speichern</button></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">About-Text (HTML)</span></div><div class="card-body">
+    <div class="fg"><textarea class="fta" id="intel-about" style="min-height:110px">${esc(cfg.aboutHtml)}</textarea>
+    <div class="fhint">// &lt;span&gt;Text&lt;/span&gt; = orange · &lt;br&gt;&lt;br&gt; = Absatz</div></div>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Ebenen-Reihenfolge</span></div><div class="card-body">
+<div class="fg"><label class="fl">Reihenfolge (Komma)</label>
+<input class="fi" id="i-layout" value="${esc((cfg.intelLayout||['text','badges']).join(','))}">
+<div class="fhint">// Mögliche Werte: text, badges</div></div>
+</div></div>
+<div class="card"><div class="card-hdr"><span class="card-hdr-title">Abschnitts-Titel</span></div><div class="card-body">
+<div class="fgrid2">
+<div class="fg"><label class="fl">Titel „Background"</label><input class="fi" id="it-bg" value="${esc((cfg.intelTitles||{}).background||'BACKGROUND')}"></div>
+<div class="fg"><label class="fl">Titel „Specializations"</label><input class="fi" id="it-spec" value="${esc((cfg.intelTitles||{}).specializations||'SPECIALIZATIONS')}"></div>
+</div></div></div>>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Spezialisierungs-Badges</span></div>
+    <div class="card-body">${badgeMgrHTML('intel',cfg.intelBadges)}</div></div>`,
+
+links:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Operations</div><div class="ch-sub">LINK MANAGEMENT</div></div>
+    <button class="btn sm" onclick="addLinkForm()">+ Link</button></div>
+  <div id="add-link-form" style="display:none"><div class="card"><div class="card-hdr"><span class="card-hdr-title">Neuer Link</span></div>
+    <div class="card-body">${linkFormHTML(-1)}</div></div></div>
+  <div id="links-list">${cfg.links.map((l,i)=>linkCardHTML(l,i)).join('')}</div>`,
+
+watchlist:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Watch List</div></div><button class="btn sm" onclick="addWLForm()">+ Eintrag</button></div>
+  <div id="add-wl-form" style="display:none"><div class="card"><div class="card-hdr"><span class="card-hdr-title">Neuer Eintrag</span></div>
+    <div class="card-body">${wlFormHTML(-1)}</div></div></div>
+  <div id="wl-list-cards">${cfg.watchlist.map((w,i)=>wlCardHTML(w,i)).join('')}</div>`,
+};
+/* RENDERS Teil B (customwindows, apps, recyclebin, filesystem, appearance, autostart, loading, clippy, security) folgt in Teil 5/6 — wird an dieses Objekt angehängt */
+/* ══ PROFILE HELPERS ════════════════════════════════════════ */
+function metaFieldsHTML(){return cfg.profileMeta.map((m,i)=>`
+  <div class="meta-row" id="mrow-${i}">
+    <input class="fi" id="ml-${i}" value="${esc(m.label)}" placeholder="Label" style="clip-path:none;width:130px;flex:none">
+    <input class="fi" id="mv-${i}" value="${esc(m.value)}" placeholder="Wert" style="clip-path:none">
+    <label class="fcheck" style="flex-shrink:0;gap:4px"><input type="checkbox" id="mhl-${i}" ${m.hl?'checked':''}>&nbsp;Aktiv</label>
+    <button class="btn danger sm" onclick="removeMeta(${i})">×</button>
+  </div>`).join('');}
+function removeMeta(i){cfg.profileMeta.splice(i,1);markDirty();showSection('profile');}
+function addMeta(){cfg.profileMeta.push({label:'Label',value:'Wert',hl:false});markDirty();showSection('profile');}
+function addStat(){if(cfg.stats.length<6){cfg.stats.push({label:'Label',value:'??'});markDirty();showSection('profile');}}
+function removeStat(){if(cfg.stats.length>1){cfg.stats.pop();markDirty();showSection('profile');}}
+function uploadPic(){pickImage('Bilder/Profil',url=>{cfg.profilePicture=url;markDirty();saveCfg();showSection('profile');});}
+/* ══ LINK MANAGER (mit Sortier-Pfeilen) ═════════════════════ */
+const ICON_OPTS=['github','linkedin','instagram','discord','email','link'];
+function linkFormHTML(i){const l=i>=0?cfg.links[i]:{code:`OP-0${cfg.links.length+1}`,title:'',sub:'',url:'',icon:'link',dcStatus:false};
+  return `<div class="fgrid2">
+    <div class="fg"><label class="fl">Code</label><input class="fi" id="lf-code" value="${esc(l.code)}"></div>
+    <div class="fg"><label class="fl">Titel</label><input class="fi" id="lf-title" value="${esc(l.title)}"></div>
+  </div><div class="fgrid2">
+    <div class="fg"><label class="fl">Untertitel</label><input class="fi" id="lf-sub" value="${esc(l.sub)}"></div>
+    <div class="fg"><label class="fl">URL</label><input class="fi" id="lf-url" value="${esc(l.url)}"></div>
+  </div><div class="fgrid2">
+    <div class="fg"><label class="fl">Icon</label><select class="fsel" id="lf-icon">${ICON_OPTS.map(o=>`<option value="${o}" ${l.icon===o?'selected':''}>${o}</option>`).join('')}</select></div>
+    <div class="fg"><label class="fl">Discord Status</label><select class="fsel" id="lf-dc"><option value="false" ${!l.dcStatus?'selected':''}>Nein</option><option value="true" ${l.dcStatus?'selected':''}>Ja</option></select></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn pri sm" onclick="${i>=0?`saveLinkEdit(${i})`:'saveNewLink()'}">${i>=0?'Speichern':'Hinzufügen'}</button>
+    <button class="btn ghost sm" onclick="${i>=0?`closeLinkEdit(${i})`:"el('add-link-form').style.display='none'"}">Abbrechen</button>
+    ${i>=0?`<button class="btn danger sm" onclick="deleteLink(${i})">Löschen</button>`:''}
+  </div>`;}
+function linkCardHTML(l,i){const icons={'github':'⌥','linkedin':'in','instagram':'◻','discord':'⬡','email':'✉','link':'→'};
+  return `<div class="list-card" id="lcard-${i}"><div class="list-card-hdr">
+    <div class="sort-arrows">
+      <button onclick="moveLink(${i},-1)" ${i===0?'disabled':''}>▲</button>
+      <button onclick="moveLink(${i},1)" ${i===cfg.links.length-1?'disabled':''}>▼</button>
+    </div>
+    <div class="lc-icon">${icons[l.icon]||'→'}</div>
+    <div class="lc-info"><div class="lc-title">${esc(l.title)}</div><div class="lc-sub">${esc(l.sub)}</div></div>
+    <div class="lc-code">${esc(l.code)}</div>
+    <div class="lc-acts"><button class="btn ghost sm" onclick="toggleLinkEdit(${i})">Bearbeiten</button><button class="btn danger sm" onclick="deleteLink(${i})">×</button></div>
+  </div><div class="list-card-body" id="ledit-${i}"></div></div>`;}
+function moveLink(i,dir){const j=i+dir;if(j<0||j>=cfg.links.length)return;
+  [cfg.links[i],cfg.links[j]]=[cfg.links[j],cfg.links[i]];markDirty();saveCfg();showSection('links');}
+function toggleLinkEdit(i){
+  const b=el(`ledit-${i}`);
+  const wasOpen=b.classList.contains('open');
+  // alle anderen offenen Edit-Forms schließen + Neu-Form leeren (verhindert doppelte IDs)
+  document.querySelectorAll('#links-list .list-card-body.open').forEach(x=>{x.classList.remove('open');x.innerHTML='';});
+  const af=el('add-link-form');if(af){af.style.display='none';const cb=af.querySelector('.card-body');if(cb)cb.innerHTML='';}
+  if(!wasOpen){b.innerHTML=linkFormHTML(i);b.classList.add('open');}
+}
+function closeLinkEdit(i){const b=el(`ledit-${i}`);b.classList.remove('open');b.innerHTML='';}
+function getLinkData(root){
+  const q=id=>root?root.querySelector('#'+id):el(id);
+  return{
+    code:(q('lf-code')?.value||'').trim(),
+    title:(q('lf-title')?.value||'').trim(),
+    sub:(q('lf-sub')?.value||'').trim(),
+    url:(q('lf-url')?.value||'').trim(),
+    icon:q('lf-icon')?.value||'link',
+    dcStatus:q('lf-dc')?.value==='true'
+  };
+}
+function saveLinkEdit(i){const d=getLinkData();cfg.links[i]=d;markDirty();saveCfg();showSection('links');}
+function saveLinkEdit(i){const d=getLinkData();cfg.links[i]=d;markDirty();saveCfg();showSection('links');}
+function deleteLink(i){cfg.links.splice(i,1);markDirty();saveCfg();showSection('links');}
+function addLinkForm(){const f=el('add-link-form');f.style.display=f.style.display==='none'?'block':'none';if(f.style.display==='block')f.querySelector('.card-body').innerHTML=linkFormHTML(-1);}
+
+/* ══ WATCHLIST (mit Sortier-Pfeilen) ════════════════════════ */
+const WL_ST=['watching','completed','planning','dropped'];
+const WL_LB={watching:'Watching',completed:'Completed',planning:'Geplant',dropped:'Dropped'};
+function wlFormHTML(i){const w=i>=0?cfg.watchlist[i]:{title:'',type:'Anime',status:'watching',ep:''};
+  return `<div class="fgrid2">
+    <div class="fg"><label class="fl">Titel</label><input class="fi" id="wf-title" value="${esc(w.title)}"></div>
+    <div class="fg"><label class="fl">Typ</label><select class="fsel" id="wf-type">${['Anime','Serie','Film','OVA'].map(t=>`<option ${w.type===t?'selected':''}>${t}</option>`).join('')}</select></div>
+  </div><div class="fgrid2">
+    <div class="fg"><label class="fl">Status</label><select class="fsel" id="wf-status">${WL_ST.map(s=>`<option value="${s}" ${w.status===s?'selected':''}>${WL_LB[s]}</option>`).join('')}</select></div>
+    <div class="fg"><label class="fl">Folgen</label><input class="fi" id="wf-ep" value="${esc(w.ep)}" placeholder="z.B. 12/24"></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn pri sm" onclick="${i>=0?`saveWLEdit(${i})`:'saveNewWL()'}">${i>=0?'Speichern':'Hinzufügen'}</button>
+    <button class="btn ghost sm" onclick="${i>=0?`closeWLEdit(${i})`:"el('add-wl-form').style.display='none'"}">Abbrechen</button>
+    ${i>=0?`<button class="btn danger sm" onclick="deleteWL(${i})">Löschen</button>`:''}
+  </div>`;}
+function wlCardHTML(w,i){const dc={watching:'wl-watching2',completed:'wl-completed2',planning:'wl-planning2',dropped:'wl-dropped2'};
+  return `<div class="list-card" id="wcard-${i}"><div class="list-card-hdr">
+    <div class="sort-arrows">
+      <button onclick="moveWL(${i},-1)" ${i===0?'disabled':''}>▲</button>
+      <button onclick="moveWL(${i},1)" ${i===cfg.watchlist.length-1?'disabled':''}>▼</button>
+    </div>
+    <div class="lc-sdot ${dc[w.status]||''}"></div>
+    <div class="lc-info"><div class="lc-title">${esc(w.title)}</div><div class="lc-sub">${w.type}·${WL_LB[w.status]||w.status}·${esc(w.ep)}</div></div>
+    <div class="lc-acts"><button class="btn ghost sm" onclick="toggleWLEdit(${i})">Bearbeiten</button><button class="btn danger sm" onclick="deleteWL(${i})">×</button></div>
+  </div><div class="list-card-body" id="wedit-${i}"></div></div>`;}
+function moveWL(i,dir){const j=i+dir;if(j<0||j>=cfg.watchlist.length)return;
+  [cfg.watchlist[i],cfg.watchlist[j]]=[cfg.watchlist[j],cfg.watchlist[i]];markDirty();saveCfg();showSection('watchlist');}
+function toggleWLEdit(i){
+  const b=el(`wedit-${i}`);
+  const wasOpen=b.classList.contains('open');
+  document.querySelectorAll('#wl-list-cards .list-card-body.open').forEach(x=>{x.classList.remove('open');x.innerHTML='';});
+  const af=el('add-wl-form');if(af){af.style.display='none';const cb=af.querySelector('.card-body');if(cb)cb.innerHTML='';}
+  if(!wasOpen){b.innerHTML=wlFormHTML(i);b.classList.add('open');}
+}
+function closeWLEdit(i){el(`wedit-${i}`).classList.remove('open');}
+function getWLData(root){
+  const q=id=>root?root.querySelector('#'+id):el(id);
+  return{
+    title:(q('wf-title')?.value||'').trim(),
+    type:q('wf-type')?.value||'Anime',
+    status:q('wf-status')?.value||'watching',
+    ep:(q('wf-ep')?.value||'').trim()
+  };
+}
+function saveNewWL(){const d=getWLData(el('add-wl-form'));if(!d.title){notify('Titel pflicht','warn');return;}cfg.watchlist.push(d);markDirty();saveCfg();showSection('watchlist');}
+function saveWLEdit(i){const d=getWLData(el('wedit-'+i));cfg.watchlist[i]=d;markDirty();saveCfg();showSection('watchlist');}
+function deleteWL(i){cfg.watchlist.splice(i,1);markDirty();saveCfg();showSection('watchlist');}
+function addWLForm(){const f=el('add-wl-form');f.style.display=f.style.display==='none'?'block':'none';if(f.style.display==='block')f.querySelector('.card-body').innerHTML=wlFormHTML(-1);}
+
+
+/* ══ RENDERS — Teil B (an RENDERS angehängt) ════════════════ */
+Object.assign(RENDERS,{
+
+customwindows:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Custom Windows</div><div class="ch-sub">EIGENE FENSTER</div></div>
+    <button class="btn sm" onclick="addCWForm()">+ Fenster</button></div>
+  <div id="add-cw-form" style="display:none"><div class="card"><div class="card-hdr"><span class="card-hdr-title">Neues Fenster</span></div>
+    <div class="card-body">${cwFormHTML(-1)}</div></div></div>
+  <div id="cw-list">${cfg.customWindows.map((w,i)=>cwCardHTML(w,i)).join('')}</div>`,
+
+recyclebin:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Papierkorb</div><div class="ch-sub">TEXT FILES</div></div>
+    <button class="btn sm" onclick="addRBForm()">+ Datei</button></div>
+  <div id="add-rb-form" style="display:none"><div class="card"><div class="card-hdr"><span class="card-hdr-title">Neue Textdatei</span></div><div class="card-body">
+    <div class="fg"><label class="fl">Dateiname</label><input class="fi" id="rb-name" placeholder="notizen.txt"></div>
+    <div class="fg"><label class="fl">Inhalt</label><textarea class="fta" id="rb-content" style="min-height:90px;font-family:'Share Tech Mono',monospace"></textarea></div>
+    <div class="btn-row"><button class="btn pri sm" onclick="saveNewRB()">Speichern</button>
+    <button class="btn ghost sm" onclick="el('add-rb-form').style.display='none'">Abbrechen</button></div>
+  </div></div></div>
+  <div id="rb-list">${(cfg.recycleBin||[]).map((f,i)=>rbCardHTML(f,i)).join('')}</div>`,
+
+filesystem:()=>`
+  <div class="content-hdr"><div><div class="ch-title">File Explorer</div><div class="ch-sub">PHYSISCHES DATEISYSTEM</div></div></div>
+  ${!API?`<div class="dash-info" style="border-color:#f04747">⚠ Benötigt api.php auf einem PHP-Server. Ordner/Dateien liegen in <code>data/files/</code>.</div>`:''}
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Ordner erstellen</span></div><div class="card-body">
+    <div class="fgrid2">
+      <div class="fg"><label class="fl">Ordnername</label><input class="fi" id="fs-folder-name" placeholder="z.B. Projekte"></div>
+      <div class="fg"><label class="fl">Übergeordnet</label><select class="fsel" id="fs-parent" style="clip-path:none"><option value="">/ (Wurzel)</option></select></div>
+    </div>
+    <button class="btn sm pri" onclick="createFolder()">Ordner erstellen</button>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Datei hochladen</span></div><div class="card-body">
+    <div class="fgrid2">
+      <div class="fg"><label class="fl">In Ordner</label><select class="fsel" id="fs-upload-folder" style="clip-path:none"><option value="">/ (Wurzel)</option></select></div>
+      <div class="fg"><label class="fl">Datei (JPEG/PNG/MP4/TXT · max 50MB)</label>
+      <input type="file" id="fs-file-inp" accept="image/jpeg,image/png,video/mp4,text/plain" class="fi" style="clip-path:none;padding:5px 10px"></div>
+    </div>
+    <button class="btn sm pri" onclick="uploadFSFile()">Hochladen</button>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Dateien &amp; Ordner</span>
+    <button class="btn sm ghost" onclick="refreshFSTree()" style="margin-left:auto">↺ Aktualisieren</button></div>
+    <div class="card-body" id="fs-tree-body"><div style="color:var(--t3);font-family:'Share Tech Mono',monospace;font-size:11px">Lädt...</div></div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Versteckte Ordner</span></div><div class="card-body" id="hidden-folders-body">
+    ${(cfg.hiddenFolders||[]).length?`<div class="fhint" style="margin-bottom:8px">${(cfg.hiddenFolders||[]).map(f=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><code style="color:var(--acc)">${f}</code><button class="btn sm danger" onclick="unhideFolder('${f}')">Einblenden</button></div>`).join('')}</div>`:'<div class="fhint">Keine versteckten Ordner</div>'}
+  </div></div>`,
+
+appearance:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Appearance</div><div class="ch-sub">THEME · IDENTITÄT · BACKGROUND</div></div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">OS Identität</span></div><div class="card-body">
+    <div class="fg"><label class="fl">OS Name</label><input class="fi" id="os-name" value="${esc(cfg.osName||'FA|BIAN')}"></div>
+    <div class="fg"><label class="fl">Untertitel</label><input class="fi" id="os-sub" value="${esc(cfg.osSub||'ENDFIELD OS // v3.0')}"></div>
+    <div class="fg"><label class="fl">Highlight-Buchstabe</label><input class="fi" id="os-hl" value="${esc(cfg.osHighlight||'B')}" maxlength="1" style="width:80px">
+      <div class="fhint">// Der erste passende Buchstabe wird in Akzentfarbe dargestellt</div></div>
+    <button class="btn sm pri" onclick="saveOS()">Speichern</button>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Theme (Standard)</span></div><div class="card-body">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    ${[['dark','#06090f','#0b1220','#e8923a','Endfield Dark','Blue · Amber'],
+       ['yellow','#C7C8C2','#535353','#FFFA00','Endfield Yellow','Arknights · Grey']
+    ].map(([t,c1,c2,ac,name,sub])=>`
+      <div style="background:var(--card);border:${cfg.theme===t?'2px solid var(--acc)':'1px solid var(--brd)'};padding:12px;cursor:pointer;transition:border-color .2s" onclick="setTheme('${t}')">
+        <div style="height:52px;background:linear-gradient(135deg,${c1},${c2});margin-bottom:8px;border-bottom:2px solid ${ac}"></div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--t1)">${name}</div>
+        <div style="font-size:10px;color:var(--t2)">${sub}</div>
+        <input class="fi" onclick="event.stopPropagation()" oninput="setThemeBg('${t}',this.value)" value="${esc((cfg.themeBg||{})[t]||'')}" placeholder="Default-BG URL" style="clip-path:none;margin-top:6px;font-size:11px">
+        <button class="btn sm ghost" onclick="event.stopPropagation();pickThemeBg('${t}')" style="margin-top:4px">BG wählen</button>
+      </div>`).join('')}
+    </div>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Eigene Themes</span>
+<button class="btn sm ghost" onclick="el('theme-import-inp').click()">⬇ Import</button>
+<button class="btn sm" style="margin-left:6px" onclick="addTheme()">+ Theme</button>
+<input type="file" id="theme-import-inp" accept="application/json,.json" multiple style="display:none" onchange="importThemeFile(this)"></div>
+<div class="card-body" id="ct-list">${(cfg.customThemes||[]).length?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">${cfg.customThemes.map((t,i)=>`<div style="background:var(--card);border:${cfg.theme==='custom-'+t.id?'2px solid var(--acc)':'1px solid var(--brd)'};padding:12px;cursor:pointer" onclick="editCustomTheme(${i})"><div style="height:52px;background:linear-gradient(135deg,${esc(t.vars?.['--bg']||'#111')},${esc(t.vars?.['--panel']||'#222')});margin-bottom:8px;border-bottom:2px solid ${esc(t.vars?.['--acc']||'#888')}"></div><div style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--t1)">${esc(t.name||'Custom')}</div><div style="font-size:10px;color:var(--t2)">${esc(t.sub||'Custom')}</div><div class="btn-row" style="margin-top:8px"><button class="btn sm pri" onclick="event.stopPropagation();setCustomTheme(${i})">Aktiv</button><button class="btn sm" onclick="event.stopPropagation();editCustomTheme(${i})">Bearbeiten</button></div></div>`).join('')}</div>`:'<div class="fhint">Noch keine eigenen Themes — über "+ Theme" anlegen</div>'}</div></div>
+<div class="card"><div class="card-hdr"><span class="card-hdr-title">Theme-Bibliothek (data/files/Themes)</span>
+<button class="btn sm ghost" style="margin-left:auto" onclick="loadThemeLibrary()">↺ Aktualisieren</button></div>
+<div class="card-body" id="theme-lib"><div class="fhint">${API?'Lädt...':'// Benötigt api.php — Themes werden sonst nur als Datei heruntergeladen'}</div></div></div>  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Hintergrundbilder</span></div><div class="card-body">
+    <div class="btn-row" style="margin-bottom:12px">
+      <button class="btn sm" onclick="el('bg-inp').click()">Bild hochladen</button>
+      ${cfg.bgImage||cfg.bgImageDefault?`<button class="btn sm danger" onclick="clearBg()">Aktuellen Hintergrund entfernen</button>`:''}
+      <input type="file" id="bg-inp" accept="image/*" style="display:none" onchange="uploadBg(this)">
+    </div>
+    ${cfg.bgImageDefault?`<div style="margin-bottom:8px"><div class="fhint" style="margin-bottom:4px">// Standard-Hintergrund (alle User):</div>
+      <div style="width:100%;height:100px;background-image:url(${cfg.bgImageDefault});background-size:cover;background-position:center;border:2px solid var(--acc-b)"></div></div>`:''}
+    <div class="bg-gallery" id="bg-gallery"><div style="color:var(--t3);font-size:11px;font-family:'Share Tech Mono',monospace">Lädt...</div></div>
+  </div></div>`,
+
+autostart:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Autostart</div><div class="ch-sub">FENSTER BEIM START · LAYER</div></div>
+    <button class="btn sm pri" onclick="saveAutostart()">Speichern</button></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Autostart-Fenster · Startposition · Layer</span></div><div class="card-body">
+    <div class="fhint" style="margin-bottom:10px">// Layer: 1 = ganz vorne · höhere Zahl = weiter hinten (wie Bild-Ebenen)</div>
+    ${[
+      {id:'profile',label:'Operator File'},{id:'intel',label:'Intel File'},
+      {id:'links',label:'Operations'},{id:'watch',label:'Watch List'},
+      {id:'fileexplorer',label:'File Explorer'},{id:'settings',label:'Settings'},
+      {id:'recyclebin',label:'Papierkorb'},{id:'texteditor',label:'Text Viewer'},
+      ...cfg.customWindows.map(w=>({id:w.id,label:w.title}))
+    ].map(item=>{const p=cfg.autostartPos[item.id]||{x:100,y:60,w:440};const z=cfg.windowLayers?.[item.id]||'';
+      return `<div style="margin-bottom:16px;padding:12px;background:var(--card);border:1px solid var(--brd)">
+        <label class="fcheck" style="margin-bottom:10px">
+          <input type="checkbox" id="as-${item.id}" ${(cfg.autostart||[]).includes(item.id)?'checked':''}> <strong>${item.label}</strong>
+        </label>
+        <div class="fgrid3" style="margin-top:6px">
+          <div class="fg"><label class="fl">X (px)</label><input class="fi" id="asx-${item.id}" value="${p.x||100}" type="number"></div>
+          <div class="fg"><label class="fl">Y (px)</label><input class="fi" id="asy-${item.id}" value="${p.y||60}" type="number"></div>
+          <div class="fg"><label class="fl">Breite (px)</label><input class="fi" id="asw-${item.id}" value="${p.w||440}" type="number"></div>
+        </div>
+        <div class="fg" style="margin-bottom:0"><label class="fl">Layer (1 = vorne)</label><input class="fi" id="asz-${item.id}" value="${z}" type="number" placeholder="leer = egal" style="width:140px"></div>
+      </div>`;}).join('')}
+  </div></div>`,
+
+apps:()=>{
+  const all=[
+    ['profile','Operator File'],['intel','Intel File'],['links','Operations'],
+    ['watch','Watch List'],['texteditor','Text Viewer'],['settings','Settings'],
+    ['recyclebin','Papierkorb'],['fileexplorer','Files'],
+    ...cfg.customWindows.map(w=>[w.id,w.title])
+  ];
+  return `
+  <div class="content-hdr"><div><div class="ch-title">Apps &amp; Layout</div><div class="ch-sub">SICHTBARKEIT · MENÜ · DESKTOP</div></div>
+    <button class="btn sm pri" onclick="saveApps()">Speichern</button></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Wo erscheint welche App?</span></div><div class="card-body">
+    ${all.map(([id,lbl])=>{const v=cfg.appVisibility?.[id]||{};
+      const m=v.menu!==undefined?v.menu:true, d=!!v.desktop, h=!!v.hidden, mob=v.mobile!==false;
+        return `<div class="app-row">
+        <strong>${esc(lbl)}</strong>
+        <label class="fcheck"><input type="checkbox" id="av-menu-${id}" ${m?'checked':''}>Menü</label>
+        <label class="fcheck"><input type="checkbox" id="av-desk-${id}" ${d?'checked':''}>Desktop</label>
+        <label class="fcheck"><input type="checkbox" id="av-hide-${id}" ${h?'checked':''}>Versteckt</label>
+        <label class="fcheck"><input type="checkbox" id="av-mob-${id}" ${mob?'checked':''}>Mobil</label>
+</div>`;}).join('')}
+    <div class="fhint" style="margin-top:10px">// „Versteckt“ = nicht in Menü, nicht auf Desktop und auch nicht in der Taskleiste (selbst wenn geöffnet).</div>
+  </div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Custom-Fenster: Rahmenlos &amp; Fixiert</span></div><div class="card-body">
+    ${cfg.customWindows.length?cfg.customWindows.map(w=>{const fl=!!cfg.frameless?.[w.id],fp=!!cfg.fixedPos?.[w.id];
+      return `<div class="app-row">
+        <strong>${esc(w.title)}</strong>
+        <label class="fcheck"><input type="checkbox" id="fl-${w.id}" ${fl?'checked':''}>Rahmenlos</label>
+        <label class="fcheck"><input type="checkbox" id="fp-${w.id}" ${fp?'checked':''}>Fixiert (nicht bewegbar)</label>
+      </div>`;}).join(''):'<div class="fhint">Keine Custom-Fenster vorhanden</div>'}
+  </div></div>`;
+},
+
+loading:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Ladescreen</div><div class="ch-sub">LOADING SCREEN</div></div>
+    <button class="btn sm pri" onclick="saveLoading()">Speichern</button></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Einstellungen</span></div><div class="card-body">
+    <div class="fg"><label class="fcheck"><input type="checkbox" id="ld-en" ${cfg.loadingEnabled!==false?'checked':''}> &nbsp;Ladescreen aktiviert</label>
+      <div class="fhint">// Deaktiviert = Desktop startet sofort ohne Ladebalken</div></div>
+    <div class="fg"><label class="fl">Ladezeit (Millisekunden)</label>
+      <input class="fi" id="ld-dur" type="number" value="${cfg.loadingDuration||2800}" min="500" max="10000">
+      <div class="fhint">// 1000 = 1 Sekunde · Standard: 2800</div></div>
+    <div class="fg"><label class="fl">Untertitel-Text</label>
+      <input class="fi" id="ld-txt" value="${esc(cfg.loadingText||'INITIALIZING DESKTOP')}">
+      <div class="fhint">// Wird unter dem Logo angezeigt</div></div>
+  </div></div>`,
+
+clippy:()=>`
+<div class="content-hdr"><div><div class="ch-title">Clippy</div><div class="ch-sub">ASSISTANTS · MULTI POPUP</div></div>
+<button class="btn sm" onclick="addClippy()">+ Clippy</button></div>
+<div class="fhint" style="margin-bottom:12px">// Jeder Clippy hat eigene Bilder und eigenen Timer. Alle aktivierten erscheinen unabhängig voneinander.</div>
+<div id="clippy-list">${(cfg.clippys||[]).map((c,i)=>clippyCardHTML(c,i)).join('')||'<div class="fhint">Noch keine Clippys — über "+ Clippy" anlegen</div>'}</div>`,
+
+security:()=>`
+  <div class="content-hdr"><div><div class="ch-title">Security</div><div class="ch-sub">PASSWORD</div></div></div>
+  <div class="card"><div class="card-hdr"><span class="card-hdr-title">Passwort ändern</span></div><div class="card-body">
+    <div class="fg"><label class="fl">Aktuelles Passwort</label><input type="password" class="fi" id="sec-old"></div>
+    <div class="fg"><label class="fl">Neues Passwort</label><input type="password" class="fi" id="sec-new"></div>
+    <div class="fg"><label class="fl">Bestätigen</label><input type="password" class="fi" id="sec-conf"></div>
+    <div class="btn-row"><button class="btn pri" onclick="changePw()">Passwort ändern</button></div>
+    <div class="fhint" style="margin-top:8px">// Standard: admin — bitte sofort ändern!</div>
+  </div></div>`,
+
+}); // ── Ende RENDERS ──
+
+/* Theme-Editor Block-HTML */
+const CT_VARS=['--bg','--panel','--card','--lift','--acc','--sec','--t1','--t2','--t3','--t4'];
+const CT_LABELS={'--bg':'Desktop-Hintergrund','--panel':'Fenster-Hintergrund','--card':'Karten/Titelleiste',
+'--lift':'Hervorgehobene Flächen','--acc':'Akzent (Hauptfarbe)','--sec':'Sekundärfarbe',
+'--t1':'Text hell','--t2':'Text gedämpft','--t3':'Text dunkel','--t4':'Rahmen/Linien'};
+function customThemeBlockHTML(t,i){
+  return `<div class="ct-block">
+    <div class="fgrid2">
+      <div class="fg"><label class="fl">Name</label><input class="fi" id="ct-n-${i}" value="${esc(t.name||'')}"></div>
+      <div class="fg"><label class="fl">Untertitel</label><input class="fi" id="ct-s-${i}" value="${esc(t.sub||'')}"></div>
+    </div>
+    <div class="fgrid2">
+      ${CT_VARS.map(v=>`<div class="fg ct-var-row">
+<label class="fl" title="${v}">${CT_LABELS[v]||v}</label>
+<input type="color" value="${esc((t.vars?.[v]||'#000000').slice(0,7))}" oninput="el('ct-${i}-${v}').value=this.value">
+<input class="fi" id="ct-${i}-${v}" value="${esc(t.vars?.[v]||'')}" placeholder="#hex" style="clip-path:none;flex:1">
+</div>`).join('')}
+</div>
+<div class="fgrid2" style="margin-top:6px">
+<div class="fg ct-var-row"><label class="fl" title="--smenu-bg">Startmenü-Farbe</label>
+<input type="color" value="${(()=>{const sm=t.vars?.['--smenu-bg']||'';const m=sm.match(/#([0-9a-fA-F]{6})/);return m?('#'+m[1]):'#000000';})()}" oninput="el('ct-${i}---smenu-bg').value=this.value">
+<input class="fi" id="ct-${i}---smenu-bg" value="${esc(t.vars?.['--smenu-bg']||'')}" placeholder="rgba(0,0,0,.94)" style="clip-path:none;flex:1"></div>
+<div class="fg"><label class="fl">Default-Hintergrund (URL)</label><input class="fi" id="ct-bg-${i}" value="${esc(t.bg||'')}" placeholder="./data/backgrounds/..."><button class="btn sm ghost" style="margin-top:4px" onclick="pickBackground(u=>{el('ct-bg-${i}').value=u;})">BG wählen</button></div>
+</div>
+<div class="fgrid2" style="margin-top:6px">
+<div class="fg ct-var-row"><label class="fl" title="--taskbar-bg">Taskleisten-Farbe</label>
+<input type="color" value="${(()=>{const tb=t.vars?.['--taskbar-bg']||'';const m=tb.match(/#([0-9a-fA-F]{6})/);return m?('#'+m[1]):'#000000';})()}" oninput="el('ct-${i}---taskbar-bg').value=this.value">
+<input class="fi" id="ct-${i}---taskbar-bg" value="${esc(t.vars?.['--taskbar-bg']||'')}" placeholder="rgba(0,0,0,.88)" style="clip-path:none;flex:1"></div>
+<div class="fg" style="display:flex;flex-direction:column;gap:6px;justify-content:center">
+<label class="fcheck"><input type="checkbox" id="ct-${i}-ck" ${(t.vars?.['--ck-display']||'block')!=='none'?'checked':''}>&nbsp;Ecken-Markierungen an Fenstern</label>
+<label class="fcheck"><input type="checkbox" id="ct-${i}-stripe" ${(t.vars?.['--stripe-anim']&&t.vars['--stripe-anim']!=='none')?'checked':''}>&nbsp;Zierstreifen animiert</label>
+</div>
+</div>
+<div class="btn-row">
+<button class="btn pri sm" onclick="saveTheme(${i})">Speichern</button>
+      <button class="btn sm" onclick="exportTheme(${i})">⬆ Export</button>
+      <button class="btn danger sm" onclick="delTheme(${i})">Löschen</button>
+    </div>
+    <div class="fhint">// --acc setzt automatisch --acc-dim / --acc-b / --hex</div>
+  </div>`;
+}
+
+/* ══ SECTION SAVES (inkl. neuer Felder) ═════════════════════ */
+function saveProfile(){
+  cfg.profileMeta=cfg.profileMeta.map((_,i)=>({label:(el(`ml-${i}`)?.value||'').trim(),value:(el(`mv-${i}`)?.value||'').trim(),hl:el(`mhl-${i}`)?.checked||false}));
+  cfg.operatorName=(el('p-name')?.value||'').trim();
+  cfg.operatorRole=(el('p-role')?.value||'').trim();
+  cfg.stats=cfg.stats.map((_,i)=>({label:(el(`sl-${i}`)?.value||'').trim(),value:(el(`sv-${i}`)?.value||'').trim()}));
+  // NEU: Namensgrößen + Layout
+  cfg.nameSize={first:parseInt(el('ns-first')?.value||'38'),last:parseInt(el('ns-last')?.value||'38')};
+  cfg.profileLayout=(el('p-layout')?.value||'avatar,badges,text,stats').split(',').map(s=>s.trim()).filter(Boolean);
+  markDirty();saveCfg();
+}
+function saveDiscord(){cfg.discordId=(el('dc-id')?.value||'').trim();cfg.discordName=(el('dc-name')?.value||'').trim();cfg.discordUrl=(el('dc-url')?.value||'').trim();markDirty();saveCfg();}
+function saveIntel(){
+  cfg.aboutHtml=(el('intel-about')?.value||'').trim();
+  cfg.intelLayout=(el('i-layout')?.value||'text,badges').split(',').map(s=>s.trim()).filter(Boolean);
+  cfg.intelTitles={background:(el('it-bg')?.value||'BACKGROUND').trim(),specializations:(el('it-spec')?.value||'SPECIALIZATIONS').trim()};
+  markDirty();saveCfg();
+}
+function saveLoading(){
+  cfg.loadingEnabled=el('ld-en')?.checked!==false;
+  cfg.loadingDuration=parseInt(el('ld-dur')?.value||'2800');
+  cfg.loadingText=(el('ld-txt')?.value||'').trim();
+  markDirty();saveCfg();
+}
+function saveAutostart(){
+  const all=['profile','intel','links','watch','fileexplorer','settings','recyclebin','texteditor',...cfg.customWindows.map(w=>w.id)];
+  cfg.autostart=all.filter(id=>el(`as-${id}`)?.checked);
+  cfg.autostartPos={};
+  cfg.windowLayers={};
+  all.forEach(id=>{
+    cfg.autostartPos[id]={x:parseInt(el(`asx-${id}`)?.value||'100'),y:parseInt(el(`asy-${id}`)?.value||'60'),w:parseInt(el(`asw-${id}`)?.value||'440')};
+    const z=parseInt(el(`asz-${id}`)?.value||'');if(z)cfg.windowLayers[id]=z;
+  });
+  markDirty();saveCfg();
+}
+function setTheme(t){cfg.theme=t;document.documentElement.dataset.theme=t;markDirty();saveCfg();showSection('appearance');}
+function setThemeBg(t,url){cfg.themeBg=cfg.themeBg||{};if(url.trim())cfg.themeBg[t]=url.trim();else delete cfg.themeBg[t];markDirty();}
+function pickThemeBg(t){pickBackground(url=>{cfg.themeBg=cfg.themeBg||{};cfg.themeBg[t]=url;markDirty();saveCfg();showSection('appearance');});}
+/* ══ OS IDENTITÄT ═══════════════════════════════════════════ */
+function saveOS(){
+  cfg.osName=(el('os-name')?.value||'FA|BIAN').trim();
+  cfg.osSub=(el('os-sub')?.value||'').trim();
+  cfg.osHighlight=(el('os-hl')?.value||'B').trim().charAt(0)||'B';
+  markDirty();saveCfg();
+}
+
+/* ══ EIGENE THEMES ══════════════════════════════════════════ */
+function addTheme(){
+  cfg.customThemes=cfg.customThemes||[];
+  cfg.customThemes.push({id:'t'+Date.now(),name:'Neues Theme',sub:'Custom',base:'dark',vars:{}});
+  markDirty();saveCfg();showSection('appearance');
+}
+function setCustomTheme(i){
+  const t=cfg.customThemes[i];if(!t)return;
+  cfg.theme='custom-'+t.id;markDirty();saveCfg();showSection('appearance');
+}
+function editCustomTheme(i){
+  const ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:30000;background:rgba(0,0,0,.8);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:30px';
+  ov.innerHTML=`<div style="background:var(--panel);border:1px solid var(--acc-b);width:640px;max-width:94vw"><div class="card-hdr"><span class="card-hdr-title">Theme bearbeiten</span><button class="btn sm ghost" id="cte-close" style="margin-left:auto">×</button></div><div class="card-body">${customThemeBlockHTML(cfg.customThemes[i],i)}</div></div>`;
+  document.body.appendChild(ov);
+  ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
+  ov.querySelector('#cte-close').onclick=()=>ov.remove();
+}
+async function pickBackground(callback){
+  if(!API){const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=()=>{const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=e=>callback(e.target.result);r.readAsDataURL(f);};inp.click();return;}
+  const ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:30000;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center';
+  ov.innerHTML=`<div style="background:var(--panel);border:1px solid var(--acc-b);width:560px;max-width:92vw;max-height:80vh;display:flex;flex-direction:column"><div class="card-hdr"><span class="card-hdr-title">Hintergrund auswählen</span><button class="btn sm ghost" id="pb-close" style="margin-left:auto">×</button></div><div class="card-body" style="overflow:auto"><div class="btn-row" style="margin-bottom:10px"><button class="btn sm" id="pb-up">Neues Bild hochladen</button><input type="file" id="pb-file" accept="image/*" style="display:none"></div><div class="bg-gallery" id="pb-gallery"><div class="fhint">Lädt...</div></div></div></div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove();
+  ov.addEventListener('click',e=>{if(e.target===ov)close();});
+  el('pb-close').onclick=close;
+  el('pb-up').onclick=()=>el('pb-file').click();
+  el('pb-file').onchange=async()=>{const f=el('pb-file').files[0];if(!f)return;const fd=new FormData();fd.append('action','upload_bg');fd.append('file',f);try{const r=await fetch('./api.php',{method:'POST',body:fd});const d=await r.json();if(d.url){callback(d.url);close();}else notify(d.error||'Upload-Fehler','err');}catch{notify('Upload fehlgeschlagen','err');}};
+  try{const r=await fetch('./api.php?action=list_bgs');const bgs=r.ok?await r.json():[];const g=el('pb-gallery');g.innerHTML=bgs.length?bgs.map(b=>`<div class="bg-thumb" style="background-image:url(${b.url});background-size:cover;background-position:center" onclick="(window._pbPick&&window._pbPick('${b.url}'))"></div>`).join(''):'<div class="fhint">Noch keine Hintergründe</div>';window._pbPick=(url)=>{callback(url);close();delete window._pbPick;};}catch{el('pb-gallery').innerHTML='<div class="fhint">Fehler beim Laden</div>';}
+}
+function saveTheme(i){
+  const t=cfg.customThemes[i];if(!t)return;
+  t.name=(el('ct-n-'+i)?.value||'Custom').trim();
+  t.sub=(el('ct-s-'+i)?.value||'').trim();
+  t.base=t.base||'dark';
+  t.vars={};
+  CT_VARS.forEach(v=>{const val=(el(`ct-${i}-${v}`)?.value||'').trim();
+  if(val){t.vars[v]=val;
+  if(v==='--acc'&&/^#([0-9a-fA-F]{6})$/.test(val)){t.vars['--acc-dim']=val+'22';t.vars['--acc-b']=val+'59';t.vars['--acc-glow']=val+'66';t.vars['--hex']=val+'10';}
+  if(v==='--sec'&&/^#([0-9a-fA-F]{6})$/.test(val)){t.vars['--sec-dim']=val+'22';t.vars['--sec-b']=val+'59';}
+  }});
+  const sm=(el(`ct-${i}---smenu-bg`)?.value||'').trim();
+  if(sm)t.vars['--smenu-bg']=sm; else delete t.vars['--smenu-bg'];
+  const bg=(el(`ct-bg-${i}`)?.value||'').trim();
+if(bg)t.bg=bg; else delete t.bg;
+  // NEU: Taskleisten-Farbe / Ecken / Streifen-Animation
+  const tbBg=(el(`ct-${i}---taskbar-bg`)?.value||'').trim();
+  if(tbBg)t.vars['--taskbar-bg']=tbBg; else delete t.vars['--taskbar-bg'];
+  t.vars['--ck-display']=el(`ct-${i}-ck`)?.checked?'block':'none';
+  t.vars['--stripe-anim']=el(`ct-${i}-stripe`)?.checked?'stripe-flow 3s linear infinite':'none';
+  markDirty();saveCfg();notify('Theme gespeichert','ok');showSection('appearance');
+}
+function delTheme(i){cfg.customThemes.splice(i,1);markDirty();saveCfg();showSection('appearance');}
+
+/* ── THEME EXPORT / IMPORT (Subfolder data/files/Themes) ── */
+function exportTheme(i){
+const t=cfg.customThemes[i];if(!t)return;
+saveTheme(i); // erst aktuelle Eingaben übernehmen/speichern
+const data=cfg.customThemes[i];
+// 1) Datei-Download (immer)
+const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+a.download=(data.name||data.id||'theme').replace(/[^a-zA-Z0-9._-]/g,'_')+'.json';
+document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(a.href);
+// 2) zusätzlich im Subfolder ablegen (wenn Server da)
+if(API){fetch('./api.php?action=save_theme',{method:'POST',
+headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+.then(()=>{notify('Theme exportiert & in Themes/ abgelegt','ok');loadThemeLibrary();})
+.catch(()=>notify('Datei heruntergeladen (Server-Ablage fehlgeschlagen)','warn'));
+}else notify('Theme als Datei heruntergeladen','ok');
+}
+function addImportedTheme(data){
+if(!data||typeof data!=='object'){notify('Ungültige Theme-Datei','err');return;}
+// neue ID vergeben, damit Importe nicht kollidieren
+data.id='t'+Date.now()+Math.floor(Math.random()*1000);
+data.name=data.name||'Importiertes Theme';data.sub=data.sub||'Imported';data.vars=data.vars||{};
+cfg.customThemes=cfg.customThemes||[];cfg.customThemes.push(data);
+markDirty();saveCfg();notify('Theme importiert','ok');showSection('appearance');
+}
+function importThemeFile(inp){
+[...inp.files].forEach(f=>{const r=new FileReader();
+r.onload=e=>{try{addImportedTheme(JSON.parse(e.target.result));}catch{notify('JSON-Fehler in '+f.name,'err');}};
+r.readAsText(f);});
+inp.value='';
+}
+let _themeLib=[];
+async function loadThemeLibrary(){
+const box=el('theme-lib');if(!box)return;
+if(!API){box.innerHTML='<div class="fhint">// Benötigt api.php — Export lädt sonst nur die Datei herunter</div>';return;}
+try{const r=await fetch('./api.php?action=list_themes');_themeLib=r.ok?await r.json():[];
+if(!_themeLib.length){box.innerHTML='<div class="fhint">Keine Themes in data/files/Themes</div>';return;}
+box.innerHTML=_themeLib.map((e,i)=>{const t=e.theme||{};
+const acc=t.vars?.['--acc']||'#888',bg=t.vars?.['--bg']||'#111';
+return `<div class="app-row">
+<div class="ct-swatch" style="background:linear-gradient(135deg,${bg},${acc})"></div>
+<strong>${esc(t.name||e.file)}</strong>
+<button class="btn sm" onclick="useLibTheme(${i})">Übernehmen</button>
+<button class="btn sm danger" onclick="deleteThemeFile('${esc(e.file)}')">Löschen</button>
+</div>`;}).join('');
+}catch{box.innerHTML='<div class="fhint">Fehler beim Laden</div>';}
+}
+function useLibTheme(i){const e=_themeLib[i];if(e&&e.theme)addImportedTheme(JSON.parse(JSON.stringify(e.theme)));}
+/* ══ APPS & LAYOUT (Sichtbarkeit + frameless/fixed) ═════════ */
+function saveApps(){
+  const all=['profile','intel','links','watch','texteditor','settings','recyclebin','fileexplorer',...cfg.customWindows.map(w=>w.id)];
+  cfg.appVisibility={};
+  all.forEach(id=>{cfg.appVisibility[id]={
+    menu:!!el('av-menu-'+id)?.checked,
+    desktop:!!el('av-desk-'+id)?.checked,
+    hidden:!!el('av-hide-'+id)?.checked,
+    mobile:!!el('av-mob-'+id)?.checked
+  };});
+  cfg.frameless=cfg.frameless||{};cfg.fixedPos=cfg.fixedPos||{};
+  cfg.customWindows.forEach(w=>{
+    cfg.frameless[w.id]=!!el('fl-'+w.id)?.checked;
+    cfg.fixedPos[w.id]=!!el('fp-'+w.id)?.checked;
+  });
+  markDirty();saveCfg();
+  
+}
+
+/* ══ CLIPPY (Multi) ═════════════════════════════════════════ */
+function clippyCardHTML(c,i){
+  return `<div class="list-card" id="clcard-${i}"><div class="list-card-hdr">
+    <div class="lc-icon">❖</div>
+    <div class="lc-info"><div class="lc-title">${esc(c.name||('Clippy '+(i+1)))}</div>
+      <div class="lc-sub">${c.enabled?'Aktiv':'Inaktiv'} · ${(c.images||[]).length} Bild(er) · ${c.minSec||45}-${c.maxSec||120}s</div></div>
+    <div class="lc-acts"><button class="btn ghost sm" onclick="toggleClippyEdit(${i})">Bearbeiten</button>
+      <button class="btn danger sm" onclick="deleteClippy(${i})">×</button></div>
+  </div><div class="list-card-body" id="cledit-${i}"></div></div>`;
+}
+function clippyFormHTML(i){const c=cfg.clippys[i]||{};
+  return `<div class="fgrid2">
+    <div class="fg"><label class="fl">Name</label><input class="fi" id="clf-name-${i}" value="${esc(c.name||'')}"></div>
+<div class="fg"><label class="fl">Ecke</label><select class="fsel" id="clf-corner-${i}">${['br','bl','tr','tl'].map(cc=>`<option value="${cc}" ${(c.corner||'br')===cc?'selected':''}>${({br:'Unten rechts',bl:'Unten links',tr:'Oben rechts',tl:'Oben links'})[cc]}</option>`).join('')}</select></div>
+    <div class="fg"><label class="fcheck" style="margin-top:18px"><input type="checkbox" id="clf-en-${i}" ${c.enabled?'checked':''}>&nbsp;Aktiviert</label></div>
+  </div>
+  <div class="fgrid2">
+    <div class="fg"><label class="fl">Min Sekunden</label><input class="fi" id="clf-min-${i}" type="number" value="${c.minSec||45}"></div>
+    <div class="fg"><label class="fl">Max Sekunden</label><input class="fi" id="clf-max-${i}" type="number" value="${c.maxSec||120}"></div>
+  </div>
+  <div class="fg"><label class="fl">Bild-URLs (eine pro Zeile)</label>
+    <textarea class="fta" id="clf-imgs-${i}" style="min-height:90px;font-family:'Share Tech Mono',monospace">${esc((c.images||[]).join('\n'))}</textarea></div>
+  <button class="btn sm" onclick="pickImage('Bilder/Clippy',u=>{const ta=el('clf-imgs-${i}');ta.value=(ta.value?ta.value+'\\n':'')+u;})">Bild auswählen / hochladen</button>
+  <div class="btn-row">
+    <button class="btn pri sm" onclick="saveClippyEdit(${i})">Speichern</button>
+    <button class="btn ghost sm" onclick="toggleClippyEdit(${i})">Abbrechen</button>
+  </div>`;
+}
+function toggleClippyEdit(i){const b=el(`cledit-${i}`);
+  b.classList.contains('open')?(b.classList.remove('open'),b.innerHTML=''):(b.innerHTML=clippyFormHTML(i),b.classList.add('open'));}
+function addClippy(){if(!Array.isArray(cfg.clippys))cfg.clippys=[];
+  cfg.clippys.push({id:'cl'+Date.now(),name:'Clippy '+(cfg.clippys.length+1),enabled:true,corner:'br',images:[],minSec:45,maxSec:120});
+  markDirty();saveCfg();showSection('clippy');}
+function saveClippyEdit(i){
+  cfg.clippys[i]={
+    id:cfg.clippys[i]?.id||('cl'+Date.now()),
+    name:(el(`clf-name-${i}`)?.value||('Clippy '+(i+1))).trim(),
+    enabled:!!el(`clf-en-${i}`)?.checked,
+    corner:el(`clf-corner-${i}`)?.value||'br',
+    minSec:parseInt(el(`clf-min-${i}`)?.value||'45'),
+    maxSec:parseInt(el(`clf-max-${i}`)?.value||'120'),
+    images:(el(`clf-imgs-${i}`)?.value||'').split('\n').map(s=>s.trim()).filter(Boolean)
+  };
+  markDirty();saveCfg();showSection('clippy');
+}
+function deleteClippy(i){cfg.clippys.splice(i,1);markDirty();saveCfg();showSection('clippy');}
+
+/* ══ BACKGROUND (unverändert) ═══════════════════════════════ */
+function clearBg(){cfg.bgImage=null;markDirty();showSection('appearance');}
+async function uploadBg(inp){
+  const f=inp.files[0];if(!f)return;
+  if(API){
+    const fd=new FormData();fd.append('action','upload_bg');fd.append('file',f);
+    try{const r=await fetch('./api.php',{method:'POST',body:fd});const d=await r.json();
+      if(d.url){cfg.bgImage=d.url;markDirty();saveCfg();loadBgGallery();showSection('appearance');}
+    }catch{notify('Upload fehlgeschlagen','err');}
+  } else {
+    const r=new FileReader();r.onload=e=>{cfg.bgImage=e.target.result;markDirty();showSection('appearance');};r.readAsDataURL(f);
+  }
+}
+async function loadBgGallery(){
+  const g=el('bg-gallery');if(!g)return;
+  if(!API){g.innerHTML='<div class="fhint">// Hintergrund-Galerie benötigt api.php</div>';return;}
+  try{const r=await fetch('./api.php?action=list_bgs');const bgs=r.ok?await r.json():[];
+    if(!bgs.length){g.innerHTML='<div class="fhint">Keine Bilder hochgeladen</div>';return;}
+    g.innerHTML=bgs.map(b=>`<div class="bg-thumb ${cfg.bgImage===b.url?'on':''}" style="background-image:url(${b.url});background-size:cover;background-position:center">
+      <button class="bt-del" onclick="deleteBg('${b.name}',event)">×</button>
+      <div onclick="selectBg('${b.url}')" style="position:absolute;inset:0;cursor:pointer"></div>
+      <button onclick="setDefaultBg('${b.url}',event)" style="position:absolute;bottom:2px;left:2px;background:rgba(0,0,0,.7);border:1px solid var(--acc-b);color:var(--acc);font-size:9px;cursor:pointer;padding:2px 5px">default</button>
+    </div>`).join('');
+  }catch{g.innerHTML='<div class="fhint">Fehler beim Laden</div>';}
+}
+async function selectBg(url){cfg.bgImage=url;markDirty();saveCfg();loadBgGallery();}
+async function setDefaultBg(url,e){e.stopPropagation();cfg.bgImageDefault=url;await writeDefault({bgImageDefault:url});markDirty();saveCfg();notify('Als Standard festgelegt','ok');}
+async function deleteBg(name,e){e.stopPropagation();if(!API)return;const fd=new FormData();fd.append('action','delete_bg');fd.append('name',name);await fetch('./api.php',{method:'POST',body:fd});loadBgGallery();}
+
+/* ══ CUSTOM WINDOWS HELPER ══════════════════════════════════ */
+function cwFormHTML(i){const cw=i>=0?cfg.customWindows[i]:{id:'cw_'+Date.now(),title:'',subtitle:'',type:'info',icon:'◆',showStartMenu:true,showDesktopIcon:false,initW:420,content:{}};
+  return `<div class="fgrid2">
+    <div class="fg"><label class="fl">Titel</label><input class="fi" id="cw-title" value="${esc(cw.title)}"></div>
+    <div class="fg"><label class="fl">Titelbar-Untertitel</label><input class="fi" id="cw-subtitle" value="${esc(cw.subtitle||'')}"></div>
+  </div><div class="fgrid2">
+    <div class="fg"><label class="fl">Icon (Symbol)</label><input class="fi" id="cw-icon" value="${esc(cw.icon||'◆')}"></div>
+    <div class="fg"><label class="fl">Breite (px)</label><input class="fi" id="cw-w" value="${cw.initW||420}" type="number"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+  ${[['info','◈','Info + Badges'],['image','▣','Bild'],['gallery','⊞','Galerie'],['text','▤','Text']].map(([t,ic,name])=>`
+    <div style="padding:10px 8px;background:var(--card);border:${cw.type===t?'2px solid var(--acc)':'1px solid var(--brd)'};cursor:pointer;text-align:center;transition:border-color .2s" onclick="setCWType('${t}')">
+      <div style="font-size:20px;margin-bottom:4px">${ic}</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--t1);text-transform:uppercase">${name}</div>
+    </div>`).join('')}
+  </div>
+  <div id="cw-type-fields">${cwTypeFields(cw.type,cw.content||{})}</div>
+  <div class="fgrid2" style="margin-top:10px">
+    <label class="fcheck"><input type="checkbox" id="cw-sm" ${cw.showStartMenu?'checked':''}>&nbsp;Im Startmenü</label>
+    <label class="fcheck"><input type="checkbox" id="cw-di" ${cw.showDesktopIcon?'checked':''}>&nbsp;Desktop-Symbol</label>
+  </div>
+  <div class="fgrid2" style="margin-top:6px">
+    <label class="fcheck"><input type="checkbox" id="cw-frameless" ${cfg.frameless?.[cw.id]?'checked':''}>&nbsp;Rahmenlos</label>
+    <label class="fcheck"><input type="checkbox" id="cw-fixed" ${cfg.fixedPos?.[cw.id]?'checked':''}>&nbsp;Fixiert (nicht bewegbar)</label>
+  </div>
+  <div class="btn-row">
+    <button class="btn pri sm" onclick="${i>=0?`saveCWEdit(${i})`:'saveNewCW()'}">${i>=0?'Speichern':'Hinzufügen'}</button>
+    <button class="btn ghost sm" onclick="${i>=0?`closeCWEdit(${i})`:"el('add-cw-form').style.display='none'"}">Abbrechen</button>
+    ${i>=0?`<button class="btn danger sm" onclick="deleteCW(${i})">Löschen</button>`:''}
+  </div>`;}
+function cwTypeFields(type,c){
+  switch(type){
+    case 'info':return `<div class="fg"><label class="fl">Untertitel</label><input class="fi" id="cwc-sub" value="${esc(c.subtitle||'')}"></div>
+      <div class="fg"><label class="fl">Text (HTML)</label><textarea class="fta" id="cwc-text">${esc(c.text||'')}</textarea></div>
+      <div class="fg"><label class="fl">Bild-URL (optional)</label><input class="fi" id="cwc-img" value="${esc(c.image||'')}">
+        <button class="btn sm" style="margin-top:6px" onclick="loadCWImg()">Bild auswählen</button>
+        <input type="file" id="cw-img-inp" accept="image/*" style="display:none" onchange="loadCWImg(this)">
+        ${c.image?`<img src="${c.image}" style="width:100%;max-height:70px;object-fit:cover;margin-top:6px;border:1px solid var(--brd)">`:''}
+      </div>
+      <div class="fg"><label class="fl">Badges</label>${badgeMgrHTML('cwinfo',c.badges||[])}</div>`;
+    case 'image':return `<div class="fg"><label class="fl">Bild-URL</label><input class="fi" id="cwc-src" value="${esc(c.src||'')}">
+        <button class="btn sm" style="margin-top:6px" onclick="loadCWImgSrc()">Bild auswählen</button>
+        <input type="file" id="cwimg-inp2" accept="image/*" style="display:none" onchange="loadCWImgSrc(this)">
+        ${c.src?`<img src="${c.src}" style="width:100%;max-height:80px;object-fit:cover;margin-top:6px;border:1px solid var(--brd)">`:''}
+      </div><div class="fg"><label class="fl">Bildunterschrift</label><input class="fi" id="cwc-caption" value="${esc(c.caption||'')}"></div>`;
+    case 'gallery':return `<div class="fg"><label class="fl">Bild-URLs (eine pro Zeile)</label>
+      <textarea class="fta" id="cwc-images" style="font-family:'Share Tech Mono',monospace" placeholder="https://bild1.jpg">${esc((c.images||[]).join('\n'))}</textarea>
+      <button class="btn sm" style="margin-top:6px" onclick="pickImage('Bilder/CustomWindows',u=>{const ta=el('cwc-images');ta.value=(ta.value?ta.value+'\\n':'')+u;})">Bild hinzufügen</button>
+      </div>`;
+    case 'text':return `<div class="fg"><label class="fl">Text-Inhalt</label>
+      <textarea class="fta" id="cwc-text" style="min-height:110px;font-family:'Share Tech Mono',monospace">${esc(c.text||'')}</textarea></div>`;
+    default:return '';
+  }
+}
+function setCWType(t){document.querySelectorAll('[onclick^="setCWType"]').forEach(d=>{d.style.border=d.getAttribute('onclick').includes(`'${t}'`)?'2px solid var(--acc)':'1px solid var(--brd)';});
+  el('cw-type-fields').innerHTML=cwTypeFields(t,{});}
+function loadCWImg(){pickImage('Bilder/CustomWindows',url=>{if(el('cwc-img'))el('cwc-img').value=url;});}
+function loadCWImgSrc(){pickImage('Bilder/CustomWindows',url=>{if(el('cwc-src'))el('cwc-src').value=url;});}
+function getCWData(existingId,root){
+  const q=id=>root?root.querySelector('#'+id):el(id);
+  const active=root?root.querySelector('#cw-type-fields'):document.querySelector('#cw-type-fields');
+  // Typ anhand der vorhandenen Felder im aktiven Container bestimmen
+  let type='info';
+  if(active){
+    if(active.querySelector('#cwc-src'))type='image';
+    else if(active.querySelector('#cwc-images'))type='gallery';
+    else if(active.querySelector('#cwc-sub')||active.querySelector('#bl-cwinfo'))type='info';
+    else if(active.querySelector('#cwc-text'))type='text';
+  }
+  let content={};
+  if(q('cwc-sub'))content.subtitle=q('cwc-sub').value;
+  if(q('cwc-text'))content.text=q('cwc-text').value;
+  if(q('cwc-img'))content.image=q('cwc-img').value||null;
+  if(q('cwc-src'))content.src=q('cwc-src').value;
+  if(q('cwc-caption'))content.caption=q('cwc-caption').value;
+  if(q('cwc-images'))content.images=q('cwc-images').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const badgeScope=root||document;
+  const badgeList=badgeScope.querySelectorAll('#bl-cwinfo .badge-chip');
+  content.badges=[...badgeList].map(c=>({l:c.textContent.replace('×','').trim(),t:c.className.match(/badge-chip (\w)/)?.[1]||'o'}));
+  const d={
+    id:existingId||'cw_'+Date.now(),
+    title:(q('cw-title')?.value||'').trim(),
+    subtitle:(q('cw-subtitle')?.value||'').trim(),
+    type,
+    icon:(q('cw-icon')?.value||'◆').trim(),
+    initW:parseInt(q('cw-w')?.value||'420'),
+    showStartMenu:q('cw-sm')?.checked||false,
+    showDesktopIcon:q('cw-di')?.checked||false,
+    content
+  };
+  cfg.frameless=cfg.frameless||{};cfg.fixedPos=cfg.fixedPos||{};
+  cfg.frameless[d.id]=!!q('cw-frameless')?.checked;
+  cfg.fixedPos[d.id]=!!q('cw-fixed')?.checked;
+  return d;
+}
+function cwCardHTML(w,i){return `<div class="list-card" id="cwcard-${i}"><div class="list-card-hdr">
+  <div class="lc-icon">${w.icon||'◆'}</div>
+  <div class="lc-info"><div class="lc-title">${esc(w.title)}</div><div class="lc-sub">${w.type}·${w.showStartMenu?'Menü':''}·${w.showDesktopIcon?'Desktop':''}</div></div>
+  <div class="lc-acts"><button class="btn ghost sm" onclick="toggleCWEdit(${i})">Bearbeiten</button><button class="btn danger sm" onclick="deleteCW(${i})">×</button></div>
+</div><div class="list-card-body" id="cwedit-${i}"></div></div>`;}
+function toggleCWEdit(i){
+  const b=el(`cwedit-${i}`);
+  const wasOpen=b.classList.contains('open');
+  document.querySelectorAll('#cw-list .list-card-body.open').forEach(x=>{x.classList.remove('open');x.innerHTML='';});
+  const af=el('add-cw-form');if(af){af.style.display='none';const cb=af.querySelector('.card-body');if(cb)cb.innerHTML='';}
+  if(!wasOpen){b.innerHTML=cwFormHTML(i);b.classList.add('open');}
+}
+function closeCWEdit(i){el(`cwedit-${i}`).classList.remove('open');}
+function saveNewCW(){const d=getCWData(null,el('add-cw-form'));if(!d.title){notify('Titel pflicht','warn');return;}cfg.customWindows.push(d);markDirty();saveCfg();showSection('customwindows');}
+function saveCWEdit(i){const d=getCWData(cfg.customWindows[i].id,el('cwedit-'+i));cfg.customWindows[i]=d;markDirty();saveCfg();showSection('customwindows');}
+function deleteCW(i){cfg.customWindows.splice(i,1);markDirty();saveCfg();showSection('customwindows');}
+function addCWForm(){const f=el('add-cw-form');f.style.display=f.style.display==='none'?'block':'none';if(f.style.display==='block')f.querySelector('.card-body').innerHTML=cwFormHTML(-1);}
+
+/* ══ RECYCLE BIN HELPER ═════════════════════════════════════ */
+function rbCardHTML(f,i){return `<div class="list-card" id="rbcard-${i}"><div class="list-card-hdr">
+  <div class="lc-icon">▤</div>
+  <div class="lc-info"><div class="lc-title">${esc(f.name)}</div><div class="lc-sub">${f.date||''}</div></div>
+  <div class="lc-acts"><button class="btn ghost sm" onclick="toggleRBEdit(${i})">Bearbeiten</button><button class="btn danger sm" onclick="deleteRB(${i})">×</button></div>
+</div><div class="list-card-body" id="rbedit-${i}"></div></div>`;}
+function toggleRBEdit(i){const b=el(`rbedit-${i}`);if(b.classList.contains('open')){b.classList.remove('open');b.innerHTML='';}
+  else{b.innerHTML=`<div class="fg"><label class="fl">Name</label><input class="fi" id="rbn-${i}" value="${esc((cfg.recycleBin||[])[i]?.name||'')}"></div>
+    <div class="fg"><label class="fl">Inhalt</label><textarea class="fta" id="rbc-${i}" style="min-height:80px;font-family:'Share Tech Mono',monospace">${esc((cfg.recycleBin||[])[i]?.content||'')}</textarea></div>
+    <div class="btn-row"><button class="btn pri sm" onclick="saveRBEdit(${i})">Speichern</button><button class="btn ghost sm" onclick="toggleRBEdit(${i})">Abbrechen</button></div>`;b.classList.add('open');}}
+async function saveRBEdit(i){
+  cfg.recycleBin[i]={name:(el(`rbn-${i}`)?.value||'').trim(),content:(el(`rbc-${i}`)?.value||''),date:cfg.recycleBin[i]?.date||new Date().toLocaleDateString('de-DE')};
+  if(API){const fd=new FormData();fd.append('action','save_bin_file');fd.append('name',cfg.recycleBin[i].name);fd.append('content',cfg.recycleBin[i].content);await fetch('./api.php',{method:'POST',body:fd});}
+  markDirty();saveCfg();showSection('recyclebin');
+}
+async function deleteRB(i){
+  if(API){const fd=new FormData();fd.append('action','delete_bin_file');fd.append('name',(cfg.recycleBin||[])[i]?.name||'');await fetch('./api.php',{method:'POST',body:fd});}
+  (cfg.recycleBin||[]).splice(i,1);markDirty();saveCfg();showSection('recyclebin');
+}
+function addRBForm(){const f=el('add-rb-form');f.style.display=f.style.display==='none'?'block':'none';}
+async function saveNewRB(){
+  const name=(el('rb-name')?.value||'').trim();const content=(el('rb-content')?.value||'');
+  if(!name){notify('Name pflicht','warn');return;}
+  const entry={name,content,date:new Date().toLocaleDateString('de-DE')};
+  if(API){const fd=new FormData();fd.append('action','save_bin_file');fd.append('name',name);fd.append('content',content);await fetch('./api.php',{method:'POST',body:fd});}
+  if(!Array.isArray(cfg.recycleBin))cfg.recycleBin=[];cfg.recycleBin.push(entry);markDirty();saveCfg();showSection('recyclebin');
+}
+
+/* ══ FILE SYSTEM HELPER ═════════════════════════════════════ */
+async function refreshFSTree(){
+  const body=el('fs-tree-body');
+  if(!body){return;} // Section noch nicht gerendert → später erneut versuchen
+  if(!API){body.innerHTML='<div class="fhint">// Benötigt api.php</div>';return;}
+  try{const r=await fetch('./api.php?action=list_tree');const tree=r.ok?await r.json():[];
+    const hidden=cfg.hiddenFolders||[];
+    function renderNode(n,d=0){
+      return `<div style="margin-left:${d*14}px;padding:5px 0">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:13px">▤</span>
+          <span style="flex:1;font-size:13px;color:var(--t1)">${n.name}</span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--t3)">${n.path}</span>
+          <button class="btn sm ghost" onclick="toggleHidden('${n.path}')">${hidden.includes(n.path)?'Einblenden':'Verstecken'}</button>
+          <button class="btn sm danger" onclick="deleteFSPath('${n.path}')">Löschen</button>
+        </div>
+      </div>${(n.children||[]).map(c=>renderNode(c,d+1)).join('')}`;
+    }
+    body.innerHTML=tree.length?tree.map(n=>renderNode(n)).join(''):'<div class="fhint">Keine Unterordner. Ordner erstellen ↑</div>';
+    const allFolders=[{path:'',name:'/ (Wurzel)'},...flattenTree(tree)];
+    ['fs-parent','fs-upload-folder'].forEach(id=>{const s=el(id);if(s){s.innerHTML=allFolders.map(f=>`<option value="${f.path}">${f.name}</option>`).join('');}});
+  }catch{body.innerHTML='<div class="fhint">Fehler beim Laden</div>';}
+}
+function flattenTree(nodes,prefix=''){let r=[];(nodes||[]).forEach(n=>{r.push({path:n.path,name:(prefix?prefix+' / ':'')+n.name});r=r.concat(flattenTree(n.children,n.name));});return r;}
+async function createFolder(){
+  if(!API){notify('Benötigt api.php','warn');return;}
+  const name=(el('fs-folder-name')?.value||'').trim();const parent=el('fs-parent')?.value||'';
+  if(!name){notify('Ordnername pflicht','warn');return;}
+  const fd=new FormData();fd.append('action','create_folder');fd.append('name',name);fd.append('parent',parent);
+  await fetch('./api.php',{method:'POST',body:fd});notify('Ordner erstellt!','ok');refreshFSTree();
+}
+async function uploadFSFile(){
+  if(!API){notify('Benötigt api.php','warn');return;}
+  const inp=el('fs-file-inp');if(!inp?.files[0]){notify('Keine Datei ausgewählt','warn');return;}
+  const folder=el('fs-upload-folder')?.value||'';
+  const fd=new FormData();fd.append('action','upload_file');fd.append('file',inp.files[0]);fd.append('folder',folder);
+  try{const r=await fetch('./api.php',{method:'POST',body:fd});const d=await r.json();
+    if(d.ok){notify('Hochgeladen!','ok');refreshFSTree();inp.value='';}else notify(d.error||'Fehler','err');}
+  catch{notify('Upload fehlgeschlagen','err');}
+}
+async function deleteFSPath(path){
+  if(!API||!confirm(`"${path}" wirklich löschen?`))return;
+  const fd=new FormData();fd.append('action','delete_path');fd.append('path',path);
+  await fetch('./api.php',{method:'POST',body:fd});notify('Gelöscht!','ok');refreshFSTree();
+}
+async function toggleHidden(path){
+  if(!(cfg.hiddenFolders||[]).includes(path)){if(!Array.isArray(cfg.hiddenFolders))cfg.hiddenFolders=[];cfg.hiddenFolders.push(path);}
+  else cfg.hiddenFolders=cfg.hiddenFolders.filter(p=>p!==path);
+  if(API){const fd=new FormData();fd.append('action','toggle_hidden');fd.append('path',path);await fetch('./api.php',{method:'POST',body:fd});}
+  markDirty();await saveCfg();refreshFSTree();showSection('filesystem');
+}
+function unhideFolder(path){toggleHidden(path);}
+
+/* ══ SECURITY ═══════════════════════════════════════════════ */
+function changePw(){
+  const o=el('sec-old')?.value,n=el('sec-new')?.value,c=el('sec-conf')?.value;
+  if(o!==(localStorage.getItem('fos_pw')||'admin')){notify('Falsches Passwort','err');return;}
+  if(!n){notify('Neues PW leer','warn');return;}if(n!==c){notify('Passwörter stimmen nicht','warn');return;}
+  localStorage.setItem('fos_pw',n);notify('Passwort geändert!','ok');
+  [el('sec-old'),el('sec-new'),el('sec-conf')].forEach(e=>{if(e)e.value='';});
+}
+
+/* ══ MISC ═══════════════════════════════════════════════════ */
+function resetDefaults(){if(!confirm('Alle Einstellungen zurücksetzen?'))return;
+  localStorage.removeItem('fos_cfg');loadCfg({});dirty=false;updateSS();showSection('dashboard');notify('Zurückgesetzt','warn');}
+function openPreview(){window.open('./index.html','_blank');}
+
+/* ══ EXPORT (vollständige Whitelist inkl. aller neuen Felder) ═ */
+async function exportHTML(){
+  notify('Export läuft…','warn');
+  try{
+    const r=await fetch('./index.html');if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    let html=await r.text();
+    const newCFG={
+      discordId:cfg.discordId, discordName:cfg.discordName, discordUrl:cfg.discordUrl,
+      operatorName:cfg.operatorName, operatorRole:cfg.operatorRole, profilePicture:cfg.profilePicture,
+      profileMeta:cfg.profileMeta, stats:cfg.stats, profileBadges:cfg.profileBadges,
+      aboutHtml:cfg.aboutHtml, intelBadges:cfg.intelBadges, watchlist:cfg.watchlist,
+      loadingDuration:cfg.loadingDuration, loadingText:cfg.loadingText, loadingEnabled:cfg.loadingEnabled,
+      theme:cfg.theme, bgImage:cfg.bgImage, bgImageDefault:cfg.bgImageDefault,
+      autostart:cfg.autostart, autostartPos:cfg.autostartPos,
+      customWindows:cfg.customWindows, recycleBin:cfg.recycleBin, hiddenFolders:cfg.hiddenFolders||[],
+      // ── NEUE FELDER ──
+      osName:cfg.osName, osSub:cfg.osSub, osHighlight:cfg.osHighlight,
+      customThemes:cfg.customThemes||[],
+      themeBg:cfg.themeBg||{},
+      intelTitles:cfg.intelTitles||{background:'BACKGROUND',specializations:'SPECIALIZATIONS'},
+      appVisibility:cfg.appVisibility||{},
+      desktopIconPos:cfg.desktopIconPos||{},
+      windowLayers:cfg.windowLayers||{},
+      frameless:cfg.frameless||{},
+      fixedPos:cfg.fixedPos||{},
+      profileLayout:cfg.profileLayout||['avatar','badges','text','stats'],
+      intelLayout:cfg.intelLayout||['text','badges'],
+      nameSize:cfg.nameSize||{first:38,last:38},
+      clippy:cfg.clippy||{enabled:false,images:[],minSec:45,maxSec:120},
+      clippys:cfg.clippys||[]
+    };
+    html=html.replace(/\/\* FOS_CFG_START \*\/[\s\S]*?\/\* FOS_CFG_END \*\//,`/* FOS_CFG_START */\nconst CFG = ${JSON.stringify(newCFG,null,2)};\n/* FOS_CFG_END */`);
+    html=html.replace(/\/\* FOS_LINKS_START \*\/[\s\S]*?\/\* FOS_LINKS_END \*\//,`/* FOS_LINKS_START */\nconst LINKS = ${JSON.stringify(cfg.links,null,2)};\n/* FOS_LINKS_END */`);
+    if(!html.includes('FOS_CFG_START'))throw new Error('Marker fehlt — index.html veraltet?');
+    const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);a.download='index.html';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+    notify('Export erfolgreich!','ok');
+  }catch(e){notify('Export fehlgeschlagen: '+e.message,'err');console.error(e);}
+}
+
+/* ══ BOOT ═══════════════════════════════════════════════════ */
+async function startPortal(){
+  el('login').style.display='none';el('portal').style.display='block';
+  await ping();const stored=await loadConfig();loadCfg(stored);
+  // ── Quercheck: Server-Config gegen Defaults abgleichen ──
+  const missing=Object.keys(DEFS).filter(k=>stored[k]===undefined);
+  if(missing.length){
+  notify('Config ergänzt: '+missing.length+' fehlende Felder aus Defaults','warn');
+  console.warn('[CFG-Querycheck] Aus Defaults ergänzt:',missing);
+  markDirty();
+  }else{
+  notify('Config aktuell & vollständig geladen','ok');
+  }
+  document.documentElement.dataset.theme=cfg.theme&&!cfg.theme.startsWith('custom-')?cfg.theme:'dark';
+  buildNav();showSection('dashboard');updateSS();
+  sessionStorage.setItem('fos_auth','1');
+}
+if(sessionStorage.getItem('fos_auth')==='1')startPortal();
+
+/* section-specific lazy loaders */
+const _origShowSection=showSection;
+window.showSection=function(id){
+  _origShowSection(id);
+  if(id==='filesystem')setTimeout(refreshFSTree,60);
+  if(id==='appearance'){setTimeout(loadBgGallery,60);setTimeout(loadThemeLibrary,60);}
+};
+
+</script>
+</body>
+</html>

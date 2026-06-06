@@ -1,0 +1,24 @@
+{
+  "id": "t_slateclean",
+  "name": "Slate Clean",
+  "sub": "Minimal · Blue-Grey",
+  "vars": {
+    "--bg": "#2b303a",
+    "--panel": "#222730",
+    "--card": "#2a2f39",
+    "--lift": "#333a45",
+    "--acc": "#6f8fb5",
+    "--acc-dim": "#6f8fb522",
+    "--acc-b": "#6f8fb559",
+    "--acc-glow": "#6f8fb566",
+    "--hex": "#6f8fb510",
+    "--sec": "#8a9bb0",
+    "--t1": "#eef2f6",
+    "--t2": "#9aa6b4",
+    "--t3": "#5a6573",
+    "--t4": "#3a424e",
+    "--taskbar-bg": "rgba(26,30,38,0.92)",
+    "--ck-display": "block",
+    "--stripe-anim": "none"
+  }
+}

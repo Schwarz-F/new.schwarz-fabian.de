@@ -1,0 +1,5 @@
+[
+  {"city":"Erkelenz","country":"DE","lat":51.08,"lon":6.32,"status":"home","note":"home base"},
+  {"city":"Köln","country":"DE","lat":50.94,"lon":6.96,"status":"visited","note":"oft"},
+  {"city":"Tokyo","country":"JP","lat":35.68,"lon":139.69,"status":"want","note":"irgendwann!"}
+]
